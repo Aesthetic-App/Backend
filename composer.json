@@ -16,6 +16,7 @@
         "laravel/nova": "*",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
+        "moontoast/math": "1.1.2 as 1.999.999",
         "spatie/laravel-medialibrary": "^9.0.0"
     },
     "require-dev": {
