@@ -40,8 +40,8 @@ class SetupProject extends Command
     public function handle()
     {
         $this->call("key:generate");
-        $this->call("passport:install");
         $this->call("migrate:fresh", ["--seed"]);
+        $this->call("passport:install");
         $this->call("storage:link");
         $user = new User(["email" => "serkanerip@gmail.com", "password" => Hash::make("testuser"), "name" => "Serkan Erip"]);
         $user->save();
