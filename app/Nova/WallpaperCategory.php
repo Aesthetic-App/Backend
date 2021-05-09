@@ -6,10 +6,13 @@ use Eminiarts\Tabs\Tabs;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Eminiarts\Tabs\TabsOnEdit;
 
 class WallpaperCategory extends Resource
 {
+    use TabsOnEdit;
+
     /**
      * The model the resource corresponds to.
      *
@@ -22,7 +25,7 @@ class WallpaperCategory extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -30,7 +33,7 @@ class WallpaperCategory extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
 
     /**
@@ -41,14 +44,20 @@ class WallpaperCategory extends Resource
      */
     public function fields(Request $request)
     {
-         $tabs = [
+        $tabs = [
             'General' => [
                 ID::make(__('ID'), 'id')->sortable(),
                 Text::make('Title')->required(),
             ],
+            'Images' => [
+                Images::make('Images', 'images')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                }),
+            ],
         ];
         return [
-            new Tabs("Wallpaper Category", $tabs),
+            new Tabs("Category", $tabs),
         ];
     }
 

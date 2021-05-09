@@ -4,10 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Headline;
+use App\Models\ThemeCategory;
 use Illuminate\Http\Request;
 
 class HeadlineController extends Controller
 {
+
+    private function headline($headline, $limit = null)
+    {
+            $categories = $headline->categories();
+            if ($limit) $categories->limit($limit);
+            $categories = $categories->get();
+            $catArray = [];
+            /** @var ThemeCategory $category */
+            foreach($categories as $category) {
+                $catArray[] = [
+                    "id" => $category->id,
+                    "title" => $category->title,
+                    "cover_image_url" => $category->cover_image_url,
+                ];
+            }
+            return ["id" => $headline->id, "title" => $headline->title, "categories" => $catArray];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +33,11 @@ class HeadlineController extends Controller
      */
     public function index()
     {
-        //
+        $headlines = [];
+        foreach(Headline::all() as $headline) {
+            $headlines[] = $this->headline($headline, 20);
+        }
+        return $headlines;
     }
 
     /**
@@ -37,7 +59,7 @@ class HeadlineController extends Controller
      */
     public function show(Headline $headline)
     {
-        //
+        return $this->headline($headline);
     }
 
     /**

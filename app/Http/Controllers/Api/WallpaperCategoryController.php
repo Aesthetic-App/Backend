@@ -2,12 +2,33 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\WallpaperCategory;
+use App\Models\Media;
 use Illuminate\Http\Request;
+use App\Models\WallpaperCategory;
+use App\Http\Controllers\Controller;
 
 class WallpaperCategoryController extends Controller
 {
+    public function images(Request $request, WallpaperCategory $category)
+    {
+        $media = Media::paginate($category, 'images');
+        return [
+            'media' => $media,
+            'id' => $category->id,
+            'title' => $category->title,
+        ];
+    }
+
+    public function icons(Request $request, WallpaperCategory $category)
+    {
+        $media = Media::paginate($category, 'icons');
+        return [
+            'media' => $media,
+            'id' => $category->id,
+            'title' => $category->title,
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,9 +56,12 @@ class WallpaperCategoryController extends Controller
      * @param  \App\Models\WallpaperCategory  $wallpaperCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(WallpaperCategory $wallpaperCategory)
+    public function show(WallpaperCategory $category)
     {
-        //
+        return [
+            'id' => $category->id,
+            'title' => $category->title,
+        ];
     }
 
     /**

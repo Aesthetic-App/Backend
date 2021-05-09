@@ -57,9 +57,15 @@ class ThemeCategory extends Resource
             ],
             'Images' => [
                 Images::make('Images', 'images')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                }),
             ],
             'Icons' => [
                 Images::make('Icons', 'icons')->showStatistics()
+                     ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })
             ]
         ];
         return [

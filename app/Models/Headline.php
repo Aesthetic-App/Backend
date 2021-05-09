@@ -11,6 +11,8 @@ class Headline extends Model
 
     protected $fillable = ['title'];
 
+    protected $with = ['categories'];
+
     public function categories()
     {
         return $this->belongsToMany(ThemeCategory::class, "theme_category_headline");

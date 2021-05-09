@@ -16,6 +16,8 @@ class ThemeCategory extends Model implements HasMedia
 
     protected $appends = ['cover_image_url'];
 
+    protected $with = [];
+
     public function headlines()
     {
         return $this->belongsToMany(Headline::class, "theme_category_headline");
@@ -25,5 +27,10 @@ class ThemeCategory extends Model implements HasMedia
     {
         $media = $this->getMedia("cover_image")->first();
         return $media ? $media->getFullUrl() : null;
+    }
+
+    public function images($all = false)
+    {
+        
     }
 }

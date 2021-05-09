@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Headline;
+use App\Models\Media;
 use App\Models\ThemeCategory;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class ThemeCategoryController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,9 +37,35 @@ class ThemeCategoryController extends Controller
      * @param  \App\Models\ThemeCategory  $themeCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ThemeCategory $themeCategory)
+    public function show(ThemeCategory $category)
     {
-        //
+       return [
+            'id' => $category->id,
+            'title' => $category->title,
+            'cover_image_url' => $category->cover_image_url
+        ];
+    }
+
+    public function images(Request $request, ThemeCategory $category)
+    {
+        $media = Media::paginate($category, 'images');
+        return [
+            'media' => $media,
+            'id' => $category->id,
+            'title' => $category->title,
+            'cover_image_url' => $category->cover_image_url
+        ];
+    }
+
+    public function icons(Request $request, ThemeCategory $category)
+    {
+        $media = Media::paginate($category, 'icons');
+        return [
+            'media' => $media,
+            'id' => $category->id,
+            'title' => $category->title,
+            'cover_image_url' => $category->cover_image_url
+        ];
     }
 
     /**
