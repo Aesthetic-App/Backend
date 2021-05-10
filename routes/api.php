@@ -19,6 +19,7 @@ Route::middleware('api')->namespace("App\Http\Controllers")->prefix('/v1')->name
     Route::get('/headlines/{headline}', 'Api\HeadlineController@show');
     Route::get('theme_categories/{category}', 'Api\ThemeCategoryController@show');
     Route::get('theme_categories/{category}/images', 'Api\ThemeCategoryController@images');
+    Route::get('theme_categories/{category}/icons', 'Api\ThemeCategoryController@icons');
     Route::get('wallpaper_categories/{category}', 'Api\WallpaperCategoryController@show');
     Route::get('wallpaper_categories/{category}/images', 'Api\WallpaperCategoryController@images');
 });
