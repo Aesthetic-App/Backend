@@ -287,3 +287,4 @@ temp/
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,laravel,intellij,linux,node
+.DS_Store

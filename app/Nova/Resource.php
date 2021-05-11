@@ -2,11 +2,20 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Http\Request;
 use Laravel\Nova\Resource as NovaResource;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 abstract class Resource extends NovaResource
 {
+    public static $globallySearchable = false;
+
+        public function authorizedToView(Request $request)
+    {
+        return false;
+    }
+
+
     /**
      * Build an "index" query for the given resource.
      *

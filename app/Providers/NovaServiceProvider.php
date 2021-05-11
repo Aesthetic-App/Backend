@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Nova\Dashboards\EmptyDashboard;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -17,6 +18,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::serving(function() {
+            Nova::style('admin', public_path('css/app.css'));
+        });
     }
 
     /**
@@ -56,7 +61,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            
         ];
     }
 

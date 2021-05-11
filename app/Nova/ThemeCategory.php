@@ -49,23 +49,26 @@ class ThemeCategory extends Resource
         $tabs = [
             'General' => [
                 ID::make(__('ID'), 'id')->sortable(),
-                Text::make('Title')->required(),
+                AttachMany::make('Headline', 'headlines', Headline::class)
+                ->help("Yeni bir headline'a bağlamak istiyorsanız aşağıdaki alana yeni headline'ın adını giriniz."),
+                Text::make('New Headline', 'new_headline_title')->hideWhenUpdating()
+                    ->onlyOnForms()
+                    ->help("Bu alanı yeni headline oluşturmak için kullanın")
+            ],
+            'Cover Image' => [
                 Images::make('Cover Image', 'cover_image')
             ],
-            'Headlines' => [
-                AttachMany::make('Headline', 'headlines', Headline::class)
-            ],
-            'Images' => [
-                Images::make('Images', 'images')->showStatistics()
+            'Wallpapers' => [
+                Images::make('Wallpapers', 'images')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
-                }),
+                })->hideFromIndex(),
             ],
             'Icons' => [
                 Images::make('Icons', 'icons')->showStatistics()
                      ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
-                    })
+                    })->hideFromIndex()
             ]
         ];
         return [

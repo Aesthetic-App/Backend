@@ -56,7 +56,7 @@ class Headline extends Resource
             ]
         ];
         return [
-            new Tabs("Headline", $tabs),
+            new Tabs("Category", $tabs),
             BelongsToMany::make('Category', 'categories', ThemeCategory::class),
         ];
 }
