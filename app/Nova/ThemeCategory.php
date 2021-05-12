@@ -51,9 +51,14 @@ class ThemeCategory extends Resource
                 ID::make(__('ID'), 'id')->sortable(),
                 AttachMany::make('Headline', 'headlines', Headline::class)
                 ->help("Yeni bir headline'a bağlamak istiyorsanız aşağıdaki alana yeni headline'ın adını giriniz."),
-                Text::make('New Headline', 'new_headline_title')->hideWhenUpdating()
+                Text::make('New Headline', 'new_headline_title')
                     ->onlyOnForms()
-                    ->help("Bu alanı yeni headline oluşturmak için kullanın")
+                    ->hideWhenUpdating()
+                    ->help("Bu alanı yeni headline oluşturmak için kullanın"),
+                Text::make('Headline', function() {
+                    $headline =  $this->headlines()->first();
+                    return $headline->title ?? '-';
+                })->onlyOnIndex(),
             ],
             'Cover Image' => [
                 Images::make('Cover Image', 'cover_image')
