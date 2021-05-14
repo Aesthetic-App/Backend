@@ -70,6 +70,7 @@ class WallpaperCategoryController extends Controller
         return [
             'id' => $category->id,
             'title' => $category->title,
+            'media' => Media::paginate($category, 'images'),
         ];
     }
 
