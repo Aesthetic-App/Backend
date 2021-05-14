@@ -36,7 +36,16 @@ class WallpaperCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = WallpaperCategory::all();
+        $resp = [];
+        foreach($categories as $category) {
+            $resp[] = [
+                'id' => $category->id,
+                'title' => $category->title,
+                'media' => Media::paginate($category, 'images'),
+            ];
+        }
+        return $resp;
     }
 
     /**
