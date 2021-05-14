@@ -9,11 +9,14 @@ use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Headline extends Resource
 {
     use TabsOnEdit;
+
+    public static function label() {
+        return 'Category';
+    }
 
     /**
      * The model the resource corresponds to.
@@ -48,16 +51,16 @@ class Headline extends Resource
     {
         $tabs = [
             'General' => [
-                ID::make(__('ID'), 'id')->sortable(),
-                Text::make('Title')->required(),
+                ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
+                Text::make('Category Name', 'title')->required(),
             ],
-            'Categories' => [
-                AttachMany::make('Categories', 'categories', ThemeCategory::class),
+            'Themes' => [
+                AttachMany::make('Themes', 'categories', ThemeCategory::class),
             ]
         ];
         return [
-            new Tabs("Category", $tabs),
-            BelongsToMany::make('Category', 'categories', ThemeCategory::class),
+            new Tabs("Category Edit/Create", $tabs),
+            BelongsToMany::make('Theme', 'categories', ThemeCategory::class),
         ];
 }
 

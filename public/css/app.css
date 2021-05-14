@@ -5,7 +5,7 @@ div[dusk="global-search-component"] {
     display: none;
 }
 
-button[dusk="create-button"] {
+button[dusk="create-button"], button[dusk="update-button"] {
     display: none;
 }
 

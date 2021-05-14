@@ -16,7 +16,6 @@ class ThemeCategoryObserver
             }
              unset($themeCategory->new_headline_title);
         }
-        $themeCategory->title = "";
     }
 
     public static function created(ThemeCategory $themeCategory) {

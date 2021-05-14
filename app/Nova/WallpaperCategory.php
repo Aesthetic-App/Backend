@@ -46,11 +46,11 @@ class WallpaperCategory extends Resource
     {
         $tabs = [
             'General' => [
-                ID::make(__('ID'), 'id')->sortable(),
-                Text::make('Title')->required(),
+                ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
+                Text::make('Category Name', 'title')->required(),
             ],
-            'Images' => [
-                Images::make('Images', 'images')->showStatistics()
+            'Wallpapers' => [
+                Images::make('Wallpapers', 'images')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
                 }),

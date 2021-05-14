@@ -15,6 +15,10 @@ class ThemeCategory extends Resource
 {
     use TabsOnEdit;
 
+    public static function label() {
+        return 'Theme';
+    }
+
     /**
      * The model the resource corresponds to.
      *
@@ -48,14 +52,15 @@ class ThemeCategory extends Resource
     {
         $tabs = [
             'General' => [
-                ID::make(__('ID'), 'id')->sortable(),
-                AttachMany::make('Headline', 'headlines', Headline::class)
-                ->help("Yeni bir headline'a bağlamak istiyorsanız aşağıdaki alana yeni headline'ın adını giriniz."),
-                Text::make('New Headline', 'new_headline_title')
+                ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
+                Text::make('Theme Name', 'title')->required(),
+                AttachMany::make('Categories', 'headlines', Headline::class)
+                ->help("Yeni bir keategoriye bağlamak istiyorsanız aşağıdaki alana yeni headline'ın adını giriniz."),
+                Text::make('New Category', 'new_headline_title')
                     ->onlyOnForms()
                     ->hideWhenUpdating()
-                    ->help("Bu alanı yeni headline oluşturmak için kullanın"),
-                Text::make('Headline', function() {
+                    ->help("Bu alanı yeni kategori oluşturmak için kullanın"),
+                Text::make('Category Name', 'category_name', function() {
                     $headline =  $this->headlines()->first();
                     return $headline->title ?? '-';
                 })->onlyOnIndex(),
@@ -77,7 +82,7 @@ class ThemeCategory extends Resource
             ]
         ];
         return [
-            new Tabs("Category", $tabs),
+            new Tabs("Theme Create/Edit", $tabs),
             BelongsToMany::make('Headline', 'headlines', Headline::class),
         ];
     }
