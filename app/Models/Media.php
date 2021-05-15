@@ -27,8 +27,8 @@ class Media extends BaseMedia
         $skip = $perPage * ($page - 1);
         $media = [
             'total' => $model->media()->where('collection_name', $collection)->count(),
-            'page' => $page,
-            'per_page' => $perPage,
+            'page' => intval($page),
+            'per_page' => intval($perPage),
             'count' => 0,
             'images' => []
         ];
