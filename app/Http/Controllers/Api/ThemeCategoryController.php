@@ -17,7 +17,16 @@ class ThemeCategoryController extends Controller
      */
     public function index()
     {
-
+        $cats = ThemeCategory::all();
+        $resp = [];
+        foreach($cats as $category) {
+            $resp[] = [
+                'id' => $category->id,
+                'title' => $category->title,
+                'cover_image_url' => $category->cover_image_url
+            ];
+        }
+        return $resp;
     }
 
     /**

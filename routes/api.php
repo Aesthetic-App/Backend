@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->namespace("App\Http\Controllers")->prefix('/v1')->name('api::')->group(function () {
     Route::get('/headlines', 'Api\HeadlineController@index');
-    Route::get('/headlines/{headline}', 'Api\HeadlineController@show');
+    Route::get('theme_categories/', 'Api\ThemeCategoryController@index');
     Route::get('theme_categories/{category}', 'Api\ThemeCategoryController@show');
     Route::get('theme_categories/{category}/images', 'Api\ThemeCategoryController@images');
     Route::get('theme_categories/{category}/icons', 'Api\ThemeCategoryController@icons');
