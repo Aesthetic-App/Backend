@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\BelongsTo;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class WidgetCategory extends Resource
 {

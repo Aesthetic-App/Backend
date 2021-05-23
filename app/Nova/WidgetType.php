@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Yassi\NestedForm\NestedForm;
 
 class WidgetType extends Resource
@@ -53,12 +54,12 @@ class WidgetType extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Type Name', 'name')->required(),
-                BelongsToMany::make("Categories", "widget_categories", WidgetCategory::class),
             ],
         ];
         return [
             new Tabs("Type Edit/Create", $tabs),
-            NestedForm::make('Categories', 'widget_categories', WidgetCategory::class)
+            NestedForm::make('Categories', 'widget_categories', WidgetCategory::class),
+            HasMany::make("Categories", "widget_categories", WidgetCategory::class),
         ];
 }
 

@@ -2,13 +2,14 @@
 
 namespace App\Nova;
 
-use App\Models\WidgetType;
 use Eminiarts\Tabs\Tabs;
+use App\Models\WidgetType;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\BelongsTo;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Widget extends Resource
@@ -54,6 +55,10 @@ class Widget extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Widget Name', 'name')->required(),
+                Images::make('Background Image', 'background_images')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                })->hideFromIndex(),
                 NovaBelongsToDepend::make('Widget Type', "widget_type")
                     ->options(WidgetType::all()),
                 NovaBelongsToDepend::make('Widget Category')
