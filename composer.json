@@ -17,11 +17,13 @@
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
         "moontoast/math": "1.1.2 as 1.999.999",
+        "orlyapps/nova-belongsto-depend": "^2.0",
         "pdmfc/nova-info-card": "^1.0",
         "plank/laravel-metable": "^5.0",
         "spatie/laravel-image-optimizer": "^1.6",
         "spatie/laravel-medialibrary": "^9.0.0",
-        "tinify/tinify": "^1.5"
+        "tinify/tinify": "^1.5",
+        "yassi/nova-nested-form": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

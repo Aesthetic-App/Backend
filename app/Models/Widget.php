@@ -13,4 +13,14 @@ class Widget extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = ['name', 'category_id', 'type_id'];
+
+    public function widget_type()
+    {
+        return $this->belongsTo(WidgetType::class, "type_id");
+    }
+
+    public function widget_category()
+    {
+        return $this->belongsTo(WidgetCategory::class, "category_id");
+    }
 }

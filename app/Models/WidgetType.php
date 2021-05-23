@@ -11,8 +11,14 @@ class WidgetType extends Model
 
     protected $fillable = ['name'];
 
-    public function categories()
+    public function oldwidget_categories()
     {
-        return $this->hasMany(WidgetCategory::class, 'type_id');
+        return $this->belongsToMany(WidgetCategory::class, "widget_category_widget_type");
     }
+
+    public function widget_categories()
+    {
+        return $this->hasMany(WidgetCategory::class, "type_id");
+    }
+
 }
