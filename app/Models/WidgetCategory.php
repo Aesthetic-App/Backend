@@ -12,7 +12,7 @@ class WidgetCategory extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $fillable = ['name', 'type_id'];
+    protected $fillable = ['name', 'type_id', 'textview_enable', 'colorpicker_enable'];
 
     public function widget_types()
     {

@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\BelongsTo;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\Boolean;
 
 class WidgetCategory extends Resource
 {
@@ -56,6 +57,8 @@ class WidgetCategory extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'name')->required(),
+                Boolean::make("Textview Enable", 'textview_enable'),
+                Boolean::make("Colorpicker Enable", 'colorpicker_enable')
                 //BelongsToMany::make("Widget Types", "widget_types", WidgetType::class),
             ],
         ];

@@ -30,6 +30,8 @@ class WidgetController extends Controller
             $widgets[$typeName]['categories'][] = [
                 'id' => $widget->widget_category->id,
                 'name' => $widget->widget_category->name,
+                'colorpicker_enable' => $widget->widget_category->colorpicker_enable,
+                'textview_enable' => $widget->widget_category->textview_enable,
                 'image' =>  $widget->media()->first() ? $widget->media()->first()->getUrl() : null
             ];
             
