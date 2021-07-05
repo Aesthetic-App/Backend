@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Headline;
 use App\Models\Widget;
+use App\Models\Headline;
+use App\Models\WidgetType;
 use Illuminate\Http\Request;
+use App\Models\WidgetCategory;
+use App\Http\Controllers\Controller;
 
 class WidgetController extends Controller
 {
@@ -17,26 +19,25 @@ class WidgetController extends Controller
      */
     public function index()
     {
-        $widgets = [];
-        foreach(Widget::all() as $widget) {
-            $typeName = $widget->widget_type->name;
-            if(!isset($widgets[$typeName])) {
-                $widgets[$typeName] = [
-                    'name' => $typeName,
-                    'categories' => [],
-                ];
-            }
-            
-            $widgets[$typeName]['categories'][] = [
-                'id' => $widget->widget_category->id,
-                'name' => $widget->widget_category->name,
-                'colorpicker_enable' => $widget->widget_category->colorpicker_enable,
-                'textview_enable' => $widget->widget_category->textview_enable,
-                'image' =>  $widget->media()->first() ? $widget->media()->first()->getUrl() : null
+        $types = [];
+
+        foreach(WidgetType::all() as $type) {
+            $typeArr = [
+                'name' => $type->name,
+                'categories' => []
             ];
-            
-        };
-        return $widgets;
+
+            /** @var WidgetCategory */
+            foreach($type->widget_categories as $category) {
+                $cat = $category->toArray();
+                $cat['widgets'] = $category->widgets;
+                $typeArr['categories'][] = $cat;
+            }
+
+            $types[] = $typeArr;
+        }
+        
+        return $types;
     }
 
     /**

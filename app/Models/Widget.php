@@ -12,7 +12,10 @@ class Widget extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $fillable = ['name', 'category_id', 'type_id'];
+    protected $fillable = [
+        'name', 'category_id', 'type_id',
+        'theme_hex_color', 'background_hex_color', 'font_name', 'text'
+    ];
 
     public function widget_type()
     {

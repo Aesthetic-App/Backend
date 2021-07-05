@@ -12,11 +12,20 @@ class WidgetCategory extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $fillable = ['name', 'type_id', 'textview_enable', 'colorpicker_enable'];
+    protected $fillable = [
+        'name', 'type_id', 'textview_enable', 'colorpicker_enable',
+        'theme_color_is_enabled', 'background_color_is_enabled',
+        'text_is_enabled', 'font_is_enabled'
+    ];
 
     public function widget_types()
     {
         return $this->belongsToMany(WidgetType::class, "widget_category_widget_type");
+    }
+
+    public function widgets()
+    {
+        return $this->hasMany(Widget::class, 'category_id');
     }
 
     public function widget_type()

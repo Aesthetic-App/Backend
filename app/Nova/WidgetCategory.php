@@ -53,15 +53,21 @@ class WidgetCategory extends Resource
      */
     public function fields(Request $request)
     {
+        
         $tabs = [
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'name')->required(),
-                Boolean::make("Textview Enable", 'textview_enable'),
+                Boolean::make('Theme Color Enable', 'theme_color_is_enabled')->default(false),
+                Boolean::make('Background Color Enable', 'background_color_is_enabled')->default(false),
+                Boolean::make('Text Enable', 'text_is_enabled')->default(false),
+                Boolean::make('Font Enable', 'font_is_enabled')->default(false),
+                Boolean::make("Textview Enable", 'textview_enable')->default(false),
                 Boolean::make("Colorpicker Enable", 'colorpicker_enable')
                 //BelongsToMany::make("Widget Types", "widget_types", WidgetType::class),
             ],
         ];
+    
         return [
             new Tabs("Category Edit/Create", $tabs),
             BelongsTo::make("Widget Type", "widget_type", WidgetType::class)

@@ -52,6 +52,7 @@ class Widget extends Resource
     public function fields(Request $request)
     {
         $tabs = [
+            
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Widget Name', 'name')->required(),
@@ -59,6 +60,10 @@ class Widget extends Resource
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
                 })->hideFromIndex(),
+                Text::make("Theme Hex Color"),
+                Text::make("Background Hex Color"),
+                Text::make("Font Name"),
+                Text::make("Text"),
                 NovaBelongsToDepend::make('Widget Type', "widget_type")
                     ->options(WidgetType::all()),
                 NovaBelongsToDepend::make('Widget Category')
