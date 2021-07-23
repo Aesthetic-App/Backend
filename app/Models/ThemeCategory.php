@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ThemeCategory extends Model implements HasMedia
 {
@@ -14,13 +15,26 @@ class ThemeCategory extends Model implements HasMedia
 
     protected $fillable = ['title'];
 
-    protected $appends = ['cover_image_url'];
+    protected $appends = ['cover_image_url', 'cover_thumbnail'];
 
     protected $with = [];
 
     public function headlines()
     {
         return $this->belongsToMany(Headline::class, "theme_category_headline");
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumbnail')
+              ->width(127)
+              ->height(412);
+    }
+
+    public function getCoverThumbnailAttribute()
+    {
+        $media = $this->getMedia("thumbnail")->first();
+        return $media ? $media->getFullUrl() : null;
     }
 
     public function getCoverImageUrlAttribute()

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Plank\Metable\Metable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
 class Media extends BaseMedia
@@ -34,7 +34,10 @@ class Media extends BaseMedia
         ];
         foreach ($model->media()->where('collection_name', $collection)
                             ->skip($skip)->limit($perPage)->get() as $image) {
-                $media['images'][] = $image->getFullUrl();
+                $media['images'][] = [
+                   'original' =>  $image->getFullUrl(),
+                   'thumbnail' => $image->getFullUrl('thumbnail'),
+                ];
         }
         $media['count'] = count($media['images']);
         $media['has_next'] = ($media['count'] == $perPage) && $perPage != $media['total'];
