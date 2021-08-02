@@ -63,6 +63,7 @@ class WidgetCategory extends Resource
                 Boolean::make('Text Enable', 'text_is_enabled')->default(false),
                 Boolean::make('Font Enable', 'font_is_enabled')->default(false),
                 Boolean::make("Textview Enable", 'textview_enable')->default(false),
+                Boolean::make("Date Enable", 'is_date_enabled')->default(false),
                 Boolean::make("Colorpicker Enable", 'colorpicker_enable')
                 //BelongsToMany::make("Widget Types", "widget_types", WidgetType::class),
             ],

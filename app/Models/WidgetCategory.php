@@ -15,7 +15,7 @@ class WidgetCategory extends Model implements HasMedia
     protected $fillable = [
         'name', 'type_id', 'textview_enable', 'colorpicker_enable',
         'theme_color_is_enabled', 'background_color_is_enabled',
-        'text_is_enabled', 'font_is_enabled'
+        'text_is_enabled', 'font_is_enabled', 'is_date_enabled'
     ];
 
     public function widget_types()
