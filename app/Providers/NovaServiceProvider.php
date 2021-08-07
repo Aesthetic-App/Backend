@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Nova\Dashboards\EmptyDashboard;
-use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
+use Laravel\Nova\Cards\Help;
+use Laravel\Nova\Fields\Boolean;
+use Illuminate\Support\Facades\Gate;
+use App\Nova\Dashboards\EmptyDashboard;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -22,6 +23,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::serving(function() {
             Nova::style('admin', public_path('css/app.css'));
         });
+
+        \OptimistDigital\NovaSettings\NovaSettings::addSettingsFields([
+                Boolean::make('Test page is active', 'test_page_is_active'),
+            
+        ]);
     }
 
     /**
@@ -80,9 +86,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      *
      * @return array
      */
-    public function tools()
+        public function tools()
     {
-        return [];
+        return [
+            new \OptimistDigital\NovaSettings\NovaSettings
+        ];
     }
 
     /**
