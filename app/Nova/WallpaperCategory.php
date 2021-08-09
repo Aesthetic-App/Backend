@@ -6,8 +6,9 @@ use Eminiarts\Tabs\Tabs;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\TabsOnEdit;
+use Laravel\Nova\Fields\Boolean;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class WallpaperCategory extends Resource
 {
@@ -48,6 +49,7 @@ class WallpaperCategory extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'title')->required(),
+                Boolean::make("Premium", "is_premium"),
             ],
             'Wallpapers' => [
                 Images::make('Wallpapers', 'images')->showStatistics()

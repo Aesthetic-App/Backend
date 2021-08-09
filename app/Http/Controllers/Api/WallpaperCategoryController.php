@@ -16,6 +16,7 @@ class WallpaperCategoryController extends Controller
             'media' => $media,
             'id' => $category->id,
             'title' => $category->title,
+            'is_premium' => $category->is_premium,
         ];
     }
 
@@ -26,6 +27,7 @@ class WallpaperCategoryController extends Controller
             'media' => $media,
             'id' => $category->id,
             'title' => $category->title,
+            'is_premium' => $category->is_premium,
         ];
     }
 
@@ -42,6 +44,7 @@ class WallpaperCategoryController extends Controller
             $resp[] = [
                 'id' => $category->id,
                 'title' => $category->title,
+                'is_premium' => $category->is_premium,
                 'media' => Media::paginate($category, 'images'),
             ];
         }

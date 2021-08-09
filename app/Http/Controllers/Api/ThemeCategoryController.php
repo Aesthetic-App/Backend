@@ -23,6 +23,7 @@ class ThemeCategoryController extends Controller
             $resp[] = [
                 'id' => $category->id,
                 'title' => $category->title,
+                'is_premium' => $category->is_premium,
                 'cover_image_url' => $category->cover_image_url
             ];
         }
@@ -51,6 +52,7 @@ class ThemeCategoryController extends Controller
        return [
             'id' => $category->id,
             'title' => $category->title,
+            'is_premium' => $category->is_premium,
             'cover_image_url' => $category->cover_image_url
         ];
     }
@@ -62,6 +64,7 @@ class ThemeCategoryController extends Controller
             'media' => $media,
             'id' => $category->id,
             'title' => $category->title,
+            'is_premium' => $category->is_premium,
             'cover_image_url' => $category->cover_image_url
         ];
     }
@@ -73,6 +76,7 @@ class ThemeCategoryController extends Controller
             'media' => $media,
             'id' => $category->id,
             'title' => $category->title,
+            'is_premium' => $category->is_premium,
             'cover_image_url' => $category->cover_image_url
         ];
     }

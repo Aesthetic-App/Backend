@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
@@ -64,6 +65,7 @@ class Widget extends Resource
                 Text::make("Background Hex Color"),
                 Text::make("Font Name"),
                 Text::make("Text"),
+                Boolean::make("Premium", "is_premium"),
                 NovaBelongsToDepend::make('Widget Type', "widget_type")
                     ->options(WidgetType::all()),
                 NovaBelongsToDepend::make('Widget Category')

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 
 class ThemeCategory extends Resource
 {
@@ -64,6 +65,7 @@ class ThemeCategory extends Resource
                     $headline =  $this->headlines()->first();
                     return $headline->title ?? '-';
                 })->onlyOnIndex(),
+                Boolean::make("Premium", "is_premium"),
             ],
             'Cover Image' => [
                 Images::make('Cover Image', 'cover_image')
