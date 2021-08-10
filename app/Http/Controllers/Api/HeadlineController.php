@@ -21,7 +21,7 @@ class HeadlineController extends Controller
                 $catArray[] = [
                     "id" => $category->id,
                     "title" => $category->title,
-                    "is_premium" => $category->title,
+                    "is_premium" => $category->premium,
                     "cover_image_url" => $category->cover_image_url,
                 ];
             }
