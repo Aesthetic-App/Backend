@@ -29,6 +29,10 @@ class ThemeCategory extends Model implements HasMedia
         $this->addMediaConversion('thumbnail')
               ->width(127)
               ->height(412);
+
+        $this->addMediaConversion('small-image')
+            ->width(130)
+            ->height(130);
     }
 
     public function getCoverThumbnailAttribute()

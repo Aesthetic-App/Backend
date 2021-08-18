@@ -55,7 +55,8 @@ class WallpaperCategory extends Resource
                 Images::make('Wallpapers', 'images')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
-                }),
+                })->conversionOnDetailView("small-image")
+                ->conversionOnForm("small-image")
             ],
         ];
         return [

@@ -74,13 +74,17 @@ class ThemeCategory extends Resource
                 Images::make('Wallpapers', 'images')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
-                })->hideFromIndex(),
+                })->conversionOnDetailView("small-image")
+                ->conversionOnForm("small-image")
+                ->hideFromIndex(),
             ],
             'Icons' => [
                 Images::make('Icons', 'icons')->showStatistics()
                      ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
-                    })->hideFromIndex()
+                    })->conversionOnDetailView("small-image")
+                ->conversionOnForm("small-image")
+                    ->hideFromIndex()
             ]
         ];
         return [
