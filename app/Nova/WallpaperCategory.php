@@ -57,6 +57,7 @@ class WallpaperCategory extends Resource
                            return md5($originalFilename) . '.' . $extension;
                 })->conversionOnDetailView("small-image")
                 ->conversionOnForm("small-image")
+                ->singleImageRules("mimes:png"),
             ],
         ];
         return [

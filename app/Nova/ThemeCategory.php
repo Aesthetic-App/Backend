@@ -69,6 +69,7 @@ class ThemeCategory extends Resource
             ],
             'Cover Image' => [
                 Images::make('Cover Image', 'cover_image')
+                ->singleImageRules("mimes:png"),
             ],
             'Wallpapers' => [
                 Images::make('Wallpapers', 'images')->showStatistics()
@@ -76,7 +77,8 @@ class ThemeCategory extends Resource
                            return md5($originalFilename) . '.' . $extension;
                 })->conversionOnDetailView("small-image")
                 ->conversionOnForm("small-image")
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->singleImageRules("mimes:png"),
             ],
             'Icons' => [
                 Images::make('Icons', 'icons')->showStatistics()
