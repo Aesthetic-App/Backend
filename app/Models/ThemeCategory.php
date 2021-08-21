@@ -15,9 +15,11 @@ class ThemeCategory extends Model implements HasMedia
 
     protected $fillable = ['title'];
 
-    protected $appends = ['cover_image_url', 'cover_thumbnail'];
+    protected $appends = ['cover_image_url'];
 
     protected $with = [];
+
+    protected $hidden = ['media'];
 
     public function headlines()
     {
@@ -35,20 +37,9 @@ class ThemeCategory extends Model implements HasMedia
             ->height(130);
     }
 
-    public function getCoverThumbnailAttribute()
-    {
-        $media = $this->getMedia("thumbnail")->first();
-        return $media ? $media->getFullUrl() : null;
-    }
-
     public function getCoverImageUrlAttribute()
     {
         $media = $this->getMedia("cover_image")->first();
         return $media ? $media->getFullUrl() : null;
-    }
-
-    public function images($all = false)
-    {
-        
     }
 }

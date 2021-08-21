@@ -14,6 +14,8 @@ class WallpaperCategory extends Model implements HasMedia
 
     protected $fillable = ['title'];
 
+    protected $appends = ['limited_images'];
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumbnail')
@@ -24,5 +26,16 @@ class WallpaperCategory extends Model implements HasMedia
             ->width(130)
             ->height(130);
 
+    }
+
+    public function getLimitedImagesAttribute()
+    {
+        return $this->media()
+        ->limit(5)->get()->map(function($media) {
+            return [
+                    'normal' => $media->getFullUrl(),
+                    'thumbnail' => $media->getFullUrl('thumbnail'),
+                ];
+        });
     }
 }

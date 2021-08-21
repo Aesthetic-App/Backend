@@ -15,30 +15,11 @@ class ThemeCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cats = ThemeCategory::all();
-        $resp = [];
-        foreach($cats as $category) {
-            $resp[] = [
-                'id' => $category->id,
-                'title' => $category->title,
-                'is_premium' => $category->is_premium,
-                'cover_image_url' => $category->cover_image_url
-            ];
-        }
-        return $resp;
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $perPage = $request->get('per_page', 5);
+        return ThemeCategory::query()
+            ->paginate($perPage);
     }
 
     /**
@@ -59,26 +40,34 @@ class ThemeCategoryController extends Controller
 
     public function images(Request $request, ThemeCategory $category)
     {
-        $media = Media::paginate($category, 'images');
-        return [
-            'media' => $media,
-            'id' => $category->id,
-            'title' => $category->title,
-            'is_premium' => $category->is_premium,
-            'cover_image_url' => $category->cover_image_url
-        ];
+        $perPage = $request->per_page ?? 5;
+        /** @var LengthAwarePaginator $pagination */
+        $pagination = $category->media()->where("collection_name", 'images')->paginate($perPage);
+
+        $pagination->getCollection()->transform(function($x) {
+                return [
+                    'normal' => $x->getFullUrl(),
+                    'thumbnail' => $x->getFullUrl('thumbnail'),
+                ];
+        });
+
+        return $pagination;
     }
 
     public function icons(Request $request, ThemeCategory $category)
     {
-        $media = Media::paginate($category, 'icons');
-        return [
-            'media' => $media,
-            'id' => $category->id,
-            'title' => $category->title,
-            'is_premium' => $category->is_premium,
-            'cover_image_url' => $category->cover_image_url
-        ];
+        $perPage = $request->per_page ?? 5;
+        /** @var LengthAwarePaginator $pagination */
+        $pagination = $category->media()->where("collection_name", 'icons')->paginate($perPage);
+
+        $pagination->getCollection()->transform(function($x) {
+                return [
+                    'normal' => $x->getFullUrl(),
+                    'thumbnail' => $x->getFullUrl('thumbnail'),
+                ];
+        });
+
+        return $pagination;
     }
 
     /**

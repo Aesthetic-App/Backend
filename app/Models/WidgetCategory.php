@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -18,12 +19,21 @@ class WidgetCategory extends Model implements HasMedia
         'text_is_enabled', 'font_is_enabled', 'is_date_enabled'
     ];
 
+    protected $appends = [
+        'limited_widgets'
+    ];
+
+    public function getLimitedWidgetsAttribute()
+    {
+        return $this->widgets()->take(5)->get();
+    }
+
     public function widget_types()
     {
         return $this->belongsToMany(WidgetType::class, "widget_category_widget_type");
     }
 
-    public function widgets()
+    public function widgets(): HasMany
     {
         return $this->hasMany(Widget::class, 'category_id');
     }
