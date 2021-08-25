@@ -2,22 +2,20 @@
 
 namespace App\Nova;
 
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
-use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Eminiarts\Tabs\TabsOnEdit;
 use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Boolean;
 
 class ThemeCategory extends Resource
 {
     use TabsOnEdit;
 
     public static function label() {
-        return 'Theme';
+        return 'Theme Category';
     }
 
     /**
@@ -54,46 +52,17 @@ class ThemeCategory extends Resource
         $tabs = [
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
-                Text::make('Theme Name', 'title')->required(),
-                AttachMany::make('Categories', 'headlines', Headline::class)
-                ->help("Yeni bir keategoriye bağlamak istiyorsanız aşağıdaki alana yeni headline'ın adını giriniz."),
-                Text::make('New Category', 'new_headline_title')
-                    ->onlyOnForms()
-                    ->hideWhenUpdating()
-                    ->help("Bu alanı yeni kategori oluşturmak için kullanın"),
-                Text::make('Category Name', 'category_name', function() {
-                    $headline =  $this->headlines()->first();
-                    return $headline->title ?? '-';
-                })->onlyOnIndex(),
-                Boolean::make("Premium", "is_premium"),
+                Text::make('Category Name', 'title')->required(),
             ],
-            'Cover Image' => [
-                Images::make('Cover Image', 'cover_image')
-                ->singleImageRules("mimes:png"),
-            ],
-            'Wallpapers' => [
-                Images::make('Wallpapers', 'images')->showStatistics()
-                    ->setFileName(function($originalFilename, $extension, $model){
-                           return md5($originalFilename) . '.' . $extension;
-                })->conversionOnDetailView("small-image")
-                ->conversionOnForm("small-image")
-                ->hideFromIndex()
-                ->singleImageRules("mimes:png"),
-            ],
-            'Icons' => [
-                Images::make('Icons', 'icons')->showStatistics()
-                     ->setFileName(function($originalFilename, $extension, $model){
-                           return md5($originalFilename) . '.' . $extension;
-                    })->conversionOnDetailView("small-image")
-                ->conversionOnForm("small-image")
-                    ->hideFromIndex()
+            'Themes' => [
+                AttachMany::make('Themes', 'themes', Theme::class),
             ]
         ];
         return [
-            new Tabs("Theme Create/Edit", $tabs),
-            BelongsToMany::make('Headline', 'headlines', Headline::class),
+            new Tabs("Category Edit/Create", $tabs),
+            BelongsToMany::make('Theme', 'themes', Theme::class),
         ];
-    }
+}
 
     /**
      * Get the cards available for the request.

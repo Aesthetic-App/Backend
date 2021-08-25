@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Theme;
 use App\Models\ThemeCategory;
 use App\Observers\MediaObserver;
 use App\Observers\ThemeCategoryObserver;
+use App\Observers\ThemeObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -31,7 +33,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        ThemeCategory::observe(ThemeCategoryObserver::class);
+        Theme::observe(ThemeObserver::class);
         Media::observe(MediaObserver::class);
     }
 }

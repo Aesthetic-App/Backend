@@ -4,42 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class ThemeCategory extends Model implements HasMedia
+class ThemeCategory extends Model
 {
     use HasFactory;
-    use InteractsWithMedia;
 
     protected $fillable = ['title'];
 
-    protected $appends = ['cover_image_url'];
+    protected $appends = ['limited_themes'];
 
-    protected $with = [];
-
-    protected $hidden = ['media'];
-
-    public function headlines()
+    public function themes()
     {
-        return $this->belongsToMany(Headline::class, "theme_category_headline");
+        return $this->belongsToMany(Theme::class, "theme_theme_category");
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function getLimitedThemesAttribute()
     {
-        $this->addMediaConversion('thumbnail')
-              ->width(127)
-              ->height(412);
-
-        $this->addMediaConversion('small-image')
-            ->width(130)
-            ->height(130);
-    }
-
-    public function getCoverImageUrlAttribute()
-    {
-        $media = $this->getMedia("cover_image")->first();
-        return $media ? $media->getFullUrl() : null;
+        return $this->themes()->limit(5)->get();
     }
 }
