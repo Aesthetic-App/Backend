@@ -64,7 +64,15 @@ class WidgetCategory extends Resource
                 Boolean::make('Font Enable', 'font_is_enabled')->default(false),
                 Boolean::make("Textview Enable", 'textview_enable')->default(false),
                 Boolean::make("Date Enable", 'is_date_enabled')->default(false),
-                Boolean::make("Colorpicker Enable", 'colorpicker_enable')
+                Boolean::make("Colorpicker Enable", 'colorpicker_enable'),
+                Images::make('Cover Image', 'cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex(),
+                Images::make('Featured Cover Image', 'featured_cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex()
                 //BelongsToMany::make("Widget Types", "widget_types", WidgetType::class),
             ],
         ];
