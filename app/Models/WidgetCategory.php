@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasCoverAndFeaturedCoverImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +13,7 @@ class WidgetCategory extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use HasCoverAndFeaturedCoverImages;
 
     protected $fillable = [
         'name', 'type_id', 'textview_enable', 'colorpicker_enable',
@@ -20,7 +22,7 @@ class WidgetCategory extends Model implements HasMedia
     ];
 
     protected $appends = [
-        'limited_widgets'
+        'limited_widgets','cover_image', 'featured_cover_image'
     ];
 
     public function getLimitedWidgetsAttribute()

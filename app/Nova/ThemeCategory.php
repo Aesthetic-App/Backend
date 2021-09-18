@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class ThemeCategory extends Resource
 {
@@ -53,6 +54,14 @@ class ThemeCategory extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'title')->required(),
+                Images::make('Cover Image', 'cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex(),
+                Images::make('Featured Cover Image', 'featured_cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex()
             ],
             'Themes' => [
                 AttachMany::make('Themes', 'themes', Theme::class),

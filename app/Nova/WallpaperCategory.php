@@ -50,6 +50,14 @@ class WallpaperCategory extends Resource
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'title')->required(),
                 Boolean::make("Premium", "is_premium"),
+                Images::make('Cover Image', 'cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex(),
+                Images::make('Featured Cover Image', 'featured_cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                           return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex()
             ],
             'Wallpapers' => [
                 Images::make('Wallpapers', 'images')->showStatistics()
@@ -57,7 +65,8 @@ class WallpaperCategory extends Resource
                            return md5($originalFilename) . '.' . $extension;
                 })->conversionOnDetailView("small-image")
                 ->conversionOnForm("small-image")
-                ->singleImageRules("mimes:png"),
+                ->singleImageRules("mimes:png")
+                ->hideFromIndex()
             ],
         ];
         return [

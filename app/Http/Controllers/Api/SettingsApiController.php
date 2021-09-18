@@ -13,8 +13,20 @@ class SettingsApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Settings::query()->get();
+        $responseFormat = $request->get('response_format', 'array');
+        $settings = Settings::query()->get()->toArray();
+
+        if ($responseFormat === 'dictionary') {
+            $dict = [];
+            foreach($settings as $settings) {
+                $dict[$settings['key']] = $settings['value'];
+            }
+
+            return $dict;
+        } 
+
+        return $settings;
     }
 }
