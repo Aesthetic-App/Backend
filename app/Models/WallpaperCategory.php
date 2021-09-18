@@ -18,6 +18,8 @@ class WallpaperCategory extends Model implements HasMedia
 
     protected $appends = ['limited_images','cover_image', 'featured_cover_image'];
 
+    protected $hidden = ['media'];
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumbnail')

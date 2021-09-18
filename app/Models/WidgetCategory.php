@@ -25,6 +25,8 @@ class WidgetCategory extends Model implements HasMedia
         'limited_widgets','cover_image', 'featured_cover_image'
     ];
 
+    protected $hidden = ['media'];
+
     public function getLimitedWidgetsAttribute()
     {
         return $this->widgets()->take(5)->get();
