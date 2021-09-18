@@ -18,6 +18,8 @@ class ThemeCategory extends Model implements HasMedia
 
     protected $appends = ['limited_themes', 'cover_image', 'featured_cover_image'];
 
+    protected $hidden = ['media'];
+
     public function themes()
     {
         return $this->belongsToMany(Theme::class, "theme_theme_category");
