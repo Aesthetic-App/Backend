@@ -34,6 +34,15 @@ class WidgetCategory extends Model implements HasMedia
 
     protected $hidden = ['media'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderBy('sort_order', 'asc');
+        });
+    }
+
     public function getLimitedWidgetsAttribute()
     {
         return $this->widgets()->take(5)->get();

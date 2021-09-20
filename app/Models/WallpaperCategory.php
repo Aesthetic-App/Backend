@@ -24,9 +24,18 @@ class WallpaperCategory extends Model implements HasMedia
 
     protected $fillable = ['title'];
 
-    protected $appends = ['limited_images','cover_image', 'featured_cover_image', 'is_featured'];
+    protected $appends = ['limited_images','cover_image', 'featured_cover_image'];
 
     protected $hidden = ['media'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderBy('sort_order', 'asc');
+        });
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {
