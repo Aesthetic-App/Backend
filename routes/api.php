@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->namespace("App\Http\Controllers")->prefix('/v1')->name('api::')->group(function () {
     Route::get('/widgets', 'Api\WidgetController@index');
+    Route::get('/translations', 'Api\TranslationApiController@index');
     Route::get('/settings', 'Api\SettingsApiController@index');
     Route::get('/widgets/categories/{id}/images', 'Api\WidgetController@categoryImages');
     Route::get('/widget_categories/{category}/widgets', 'Api\WidgetCategoryApiController@widgets');

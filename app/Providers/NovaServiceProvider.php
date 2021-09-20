@@ -108,7 +108,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         public function tools()
     {
         return [
-            new \OptimistDigital\NovaSettings\NovaSettings
+            new \OptimistDigital\NovaSettings\NovaSettings,
+            new \Bernhardh\NovaTranslationEditor\NovaTranslationEditor()
         ];
     }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e61be837df2bdff28a96b9ac8e11391",
+    "content-hash": "5489b7b1c63da8c152ac0cef2fb6a05b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -151,6 +151,52 @@
                 "source": "https://github.com/aws/aws-sdk-php/tree/3.190.5"
             },
             "time": "2021-08-18T18:24:08+00:00"
+        },
+        {
+            "name": "bernhardh/nova-translation-editor",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bernhardh/nova-translation-editor.git",
+                "reference": "4a1fdde8684880714f0f16362cdc839752eb44db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bernhardh/nova-translation-editor/zipball/4a1fdde8684880714f0f16362cdc839752eb44db",
+                "reference": "4a1fdde8684880714f0f16362cdc839752eb44db",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3.0",
+                "spatie/laravel-translation-loader": ">=2.6.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bernhardh\\NovaTranslationEditor\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bernhardh\\NovaTranslationEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Nova translation editor",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/bernhardh/nova-translation-editor/issues",
+                "source": "https://github.com/bernhardh/nova-translation-editor/tree/1.3.1"
+            },
+            "time": "2021-05-25T12:19:30+00:00"
         },
         {
             "name": "brick/math",
@@ -5453,6 +5499,77 @@
                 }
             ],
             "time": "2021-03-20T18:07:00+00:00"
+        },
+        {
+            "name": "spatie/laravel-translation-loader",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-translation-loader.git",
+                "reference": "16c9ac39a4dbf4c978ab48921e27362cbbb429b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-translation-loader/zipball/16c9ac39a4dbf4c978ab48921e27362cbbb429b0",
+                "reference": "16c9ac39a4dbf4c978ab48921e27362cbbb429b0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/translation": "^6.0|^7.0|^8.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\TranslationLoader\\TranslationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TranslationLoader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Store your language lines in the database, yaml or other sources",
+            "homepage": "https://github.com/spatie/laravel-translation-loader",
+            "keywords": [
+                "database",
+                "db",
+                "i8n",
+                "language",
+                "laravel",
+                "laravel-translation-loader",
+                "spatie",
+                "translate"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-translation-loader/issues",
+                "source": "https://github.com/spatie/laravel-translation-loader/tree/2.7.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-12-04T12:54:57+00:00"
         },
         {
             "name": "spatie/once",

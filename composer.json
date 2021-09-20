@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "bernhardh/nova-translation-editor": "^1.3",
         "dillingham/nova-attach-many": "^1.3",
         "ebess/advanced-nova-media-library": "^3.6",
         "eminiarts/nova-tabs": "^1.4",
@@ -16,6 +17,7 @@
         "laravel/nova": "*",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "moontoast/math": "1.1.2 as 1.999.999",
         "optimistdigital/nova-settings": "^3.2",
         "orlyapps/nova-belongsto-depend": "^2.0",
@@ -24,9 +26,9 @@
         "spatie/laravel-image-optimizer": "^1.6",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-sluggable": "^2.6",
+        "spatie/laravel-translation-loader": "^2.7",
         "tinify/tinify": "^1.5",
-        "yassi/nova-nested-form": "^3.0",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "yassi/nova-nested-form": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
