@@ -10,10 +10,13 @@ use Eminiarts\Tabs\TabsOnEdit;
 use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\Boolean;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class ThemeCategory extends Resource
 {
     use TabsOnEdit;
+    use HasSortableRows;
 
     public static function label() {
         return 'Theme Category';
@@ -54,6 +57,7 @@ class ThemeCategory extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'title')->required(),
+                Boolean::make("Is Featured", "is_featured")->default(false),
                 Images::make('Cover Image', 'cover_image')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;

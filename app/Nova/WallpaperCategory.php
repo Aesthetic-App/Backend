@@ -9,10 +9,12 @@ use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\Boolean;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class WallpaperCategory extends Resource
 {
     use TabsOnEdit;
+    use HasSortableRows;
 
     /**
      * The model the resource corresponds to.
@@ -50,6 +52,7 @@ class WallpaperCategory extends Resource
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'title')->required(),
                 Boolean::make("Premium", "is_premium"),
+                Boolean::make("Is Featured", "is_featured")->default(false),
                 Images::make('Cover Image', 'cover_image')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;

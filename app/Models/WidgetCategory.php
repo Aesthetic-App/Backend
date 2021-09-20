@@ -2,23 +2,30 @@
 
 namespace App\Models;
 
-use App\Traits\HasCoverAndFeaturedCoverImages;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Traits\HasCoverAndFeaturedCoverImages;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WidgetCategory extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
     use HasCoverAndFeaturedCoverImages;
+    use SortableTrait;
+
+  public $sortable = [
+    'order_column_name' => 'sort_order',
+    'sort_when_creating' => true,
+  ];
 
     protected $fillable = [
         'name', 'type_id', 'textview_enable', 'colorpicker_enable',
         'theme_color_is_enabled', 'background_color_is_enabled',
-        'text_is_enabled', 'font_is_enabled', 'is_date_enabled'
+        'text_is_enabled', 'font_is_enabled', 'is_date_enabled', 'is_featured'
     ];
 
     protected $appends = [

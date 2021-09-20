@@ -16,8 +16,10 @@
         "laravel/nova": "*",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "moontoast/math": "1.1.2 as 1.999.999",
         "optimistdigital/nova-settings": "^3.2",
+        "optimistdigital/nova-sortable": "^2.4",
         "orlyapps/nova-belongsto-depend": "^2.0",
         "pdmfc/nova-info-card": "^1.0",
         "plank/laravel-metable": "^5.0",
@@ -25,8 +27,7 @@
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-sluggable": "^2.6",
         "tinify/tinify": "^1.5",
-        "yassi/nova-nested-form": "^3.0",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "yassi/nova-nested-form": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
