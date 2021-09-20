@@ -32,9 +32,9 @@ class WallpaperCategory extends Model implements HasMedia
     {
         parent::boot();
 
-        static::addGlobalScope('order', function ($builder) {
-            $builder->orderBy('sort_order', 'asc');
-        });
+        // static::addGlobalScope('order', function ($builder) {
+        //     $builder->orderBy('sort_order', 'asc');
+        // });
     }
 
     public function registerMediaConversions(Media $media = null): void
