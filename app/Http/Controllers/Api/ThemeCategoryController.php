@@ -8,24 +8,6 @@ use Illuminate\Http\Request;
 
 class ThemeCategoryController extends Controller
 {
-
-    private function headline($headline, $limit = null)
-    {
-            $categories = $headline->categories();
-            if ($limit) $categories->limit($limit);
-            $categories = $categories->get();
-            $catArray = [];
-            /** @var ThemeCategory $category */
-            foreach($categories as $category) {
-                $catArray[] = [
-                    "id" => $category->id,
-                    "title" => $category->title,
-                    "is_premium" => $category->is_premium,
-                    "cover_image_url" => $category->cover_image_url,
-                ];
-            }
-            return ["id" => $headline->id, "title" => $headline->title, "categories" => $catArray];
-    }
     /**
      * Display a listing of the resource.
      *
