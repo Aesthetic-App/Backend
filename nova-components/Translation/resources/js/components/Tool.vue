@@ -20,38 +20,43 @@
 
             <div>
                 <input type="text" class="form-control form-input" placeholder="New Key" v-model="newKey">
-                <button class="btn btn-default text-white" style="background: #39c739;" @click="addNew">New</button>
+                <button class="btn btn-default text-white" :disabled="!newKey || newKey.length < 1" style="background: #39c739;" @click="addNew">New</button>
                 <button class="btn btn-default btn-primary" @click="save">Save</button>
             </div>
         </div>
 
-        <div v-for="(_, index) in messagesModel"
-             :key="index">
-            <div v-if="showMessage(index)" class="card"
-                 style="width: 18rem;float: left;margin-right: 5px;margin-bottom: 5px"
+        <div class="flex flex-wrap flex-row">
+            <div v-for="(_, index) in messagesModel"
+                 :key="index" style="flex: 1;min-width: 18rem;max-width: 20px"
+                 :style="{'display': showMessage(index) ? 'block': 'none'}"
             >
-                <div class="card-body py-3 d-flex flex-col" style="border: 1px solid #ddd;"
-                     :class="{'new-message': !messages[index]}"
+                <div class="card"
+                     style="margin-right: 5px;margin-bottom: 5px"
                 >
-                    <div class="mb-2 d-flex flex-col px-2">
-                        <label class="font-bold">Key</label>
-                        <input type="text" placeholder="Key" class="w-full form-control form-input" v-model="messagesModel[index].key">
+                    <div class="card-body py-3 d-flex flex-col" style="border: 1px solid #ddd;"
+                         :class="{'new-message': !messages[index]}"
+                    >
+                        <div class="mb-2 d-flex flex-col px-2">
+                            <label class="font-bold">Key</label>
+                            <input type="text" placeholder="Key" class="w-full form-control form-input" v-model="messagesModel[index].key">
+                        </div>
+                        <div class="mb-2 d-flex flex-col px-2" v-if="selectedLocale !== 'en' && messagesModel[index].messages['en']">
+                            <label class="font-bold">English</label>
+                            <p>
+                                {{messagesModel[index].messages['en']}}
+                            </p>
+                        </div>
+                        <div class="d-flex flex-col px-2">
+                            <label class="font-bold">{{selectedLocale}}</label>
+                            <input type="text" placeholder="Message" class="w-full form-control form-input"
+                                   v-model="messagesModel[index].messages[selectedLocale]">
+                        </div>
                     </div>
-                    <div class="mb-2 d-flex flex-col px-2" v-if="selectedLocale !== 'en' && messagesModel[index].messages['en']">
-                        <label class="font-bold">English</label>
-                        <p>
-                            {{messagesModel[index].messages['en']}}
-                        </p>
-                    </div>
-                    <div class="d-flex flex-col px-2">
-                        <label class="font-bold">{{selectedLocale}}</label>
-                        <input type="text" placeholder="Message" class="w-full form-control form-input"
-                               v-model="messagesModel[index].messages[selectedLocale]">
-                    </div>
-                </div>
 
+                </div>
             </div>
         </div>
+
 
         <div class="clearfix"></div>
     </div>
