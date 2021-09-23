@@ -40,17 +40,12 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/translation')
+                ->prefix('nova-vendor/translation-editor')
                 ->group(__DIR__.'/../routes/api.php');
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'translation-editor');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Aesthetic\Translation\Http\TranslationEditorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/endpoint', function (Request $request) {
 //     //
 // });
+
+Route::get('/index', [TranslationEditorController::class, 'index']);
+Route::post('/save', [TranslationEditorController::class, 'save']);

@@ -9,6 +9,8 @@ class TranslationMessage extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'key';
+    protected $keyType = 'string';
     protected $fillable = ['key', 'messages'];
 
     protected $casts = [
