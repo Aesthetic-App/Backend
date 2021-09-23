@@ -2,33 +2,41 @@
     <div>
         <heading class="mb-6">Translation</heading>
 
-        <div class="py-2 flex" style="align-items: center;justify-content: space-between">
-            <div class="d-flex">
-                <input class="form-control form-input" style="flex: 1" type="text" v-model="search"
+        <div>
+            <small class="badge">İngilizceleri girilmeyen kelimeler diğer dillerde gözükmeyecektir.</small>
+        </div>
+
+        <div class="w-100 py-2 flex mb-3" style="align-items: stretch;justify-content: space-between">
+            <div class="flex mr-2" style="align-items: stretch;width: 100%">
+                <input class="form-control form-input" style="flex: 2;margin-right: 5px" type="text" v-model="search"
                        placeholder="Search for a message or key">
-                <select class="form-control form-select" v-model="showFilter">
+                <select class="form-control form-select" style="flex:1;margin-right: 5px" v-model="showFilter">
                     <option value="all">All</option>
                     <option value="missings">Only Missings</option>
                 </select>
 
-                <select class="form-control form-select" v-model="selectedLocale">
+                <select class="form-control form-select" style="flex:1" v-model="selectedLocale">
                     <option v-for="locale in locales" :key="locale.code" :value="locale.code">
                         {{ locale.language }}({{ locale.code }})
                     </option>
                 </select>
             </div>
 
-            <div>
-                <input type="text" class="form-control form-input" placeholder="New Key" v-model="newKey">
-                <input type="text" class="form-control form-input" placeholder="Message(en))" v-model="newKeyMessage">
-                <button class="btn btn-default text-white" :disabled="!((newKey && newKey.length > 0) && (newKeyMessage && newKeyMessage.length > 0))"
-                        style="background: #39c739;" @click="addNew">New
-                </button>
+            <div style="flex:1">
                 <button class="btn btn-default btn-primary" @click="save">Save</button>
             </div>
         </div>
+        <div class="flex w-full mb-1" style="align-items: stretch">
+            <input type="text" style="flex: 3;margin-right: 5px;" class="form-control form-input" placeholder="New Key" v-model="newKey">
+            <input type="text" style="flex: 3;margin-right: 5px;" class="form-control form-input" placeholder="Message(en)" v-model="newKeyMessage">
+            <button class="btn btn-default text-white" :disabled="!((newKey && newKey.length > 0) && (newKeyMessage && newKeyMessage.length > 0))"
+                    style="background: #39c739;flex: 1" @click="addNew">New
+            </button>
+        </div>
 
-        <div class="flex flex-wrap flex-row">
+        <div class="my-6" style="width: 100%; height: 1px;border-top: 1px solid #bfbfbf;"/>
+
+        <div class="flex flex-wrap flex-row" style="justify-content: center">
             <div v-for="(_, index) in messagesModel"
                  :key="index" style="flex: 1;min-width: 18rem;max-width: 20px"
                  :style="{'display': showMessage(index) ? 'block': 'none'}"
@@ -162,5 +170,11 @@ export default {
 /* Scoped Styles */
 .new-message {
     border: 2px solid #8fc15d !important;
+}
+.badge {
+    background: yellow;
+    color: black;
+    padding: 2px 10px;
+    font-weight: bold;
 }
 </style>

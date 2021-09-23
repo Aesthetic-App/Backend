@@ -12858,7 +12858,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n.badge {\n    background: yellow;\n    color: black;\n    padding: 2px 10px;\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -13214,6 +13214,14 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_primevue_selectbutton__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_primevue_selectbutton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_primevue_selectbutton__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14586,189 +14594,139 @@ var render = function() {
     [
       _c("heading", { staticClass: "mb-6" }, [_vm._v("Translation")]),
       _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "py-2 flex",
+          staticClass: "w-100 py-2 flex mb-3",
           staticStyle: {
-            "align-items": "center",
+            "align-items": "stretch",
             "justify-content": "space-between"
           }
         },
         [
-          _c("div", { staticClass: "d-flex" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.search,
-                  expression: "search"
-                }
-              ],
-              staticClass: "form-control form-input",
-              staticStyle: { flex: "1" },
-              attrs: {
-                type: "text",
-                placeholder: "Search for a message or key"
-              },
-              domProps: { value: _vm.search },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.search = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
+          _c(
+            "div",
+            {
+              staticClass: "flex mr-2",
+              staticStyle: { "align-items": "stretch", width: "100%" }
+            },
+            [
+              _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.showFilter,
-                    expression: "showFilter"
+                    value: _vm.search,
+                    expression: "search"
                   }
                 ],
-                staticClass: "form-control form-select",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.showFilter = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "all" } }, [_vm._v("All")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "missings" } }, [
-                  _vm._v("Only Missings")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedLocale,
-                    expression: "selectedLocale"
-                  }
-                ],
-                staticClass: "form-control form-select",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selectedLocale = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              _vm._l(_vm.locales, function(locale) {
-                return _c(
-                  "option",
-                  { key: locale.code, domProps: { value: locale.code } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(locale.language) +
-                        "(" +
-                        _vm._s(locale.code) +
-                        ")\n                "
-                    )
-                  ]
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newKey,
-                  expression: "newKey"
-                }
-              ],
-              staticClass: "form-control form-input",
-              attrs: { type: "text", placeholder: "New Key" },
-              domProps: { value: _vm.newKey },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.newKey = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newKeyMessage,
-                  expression: "newKeyMessage"
-                }
-              ],
-              staticClass: "form-control form-input",
-              attrs: { type: "text", placeholder: "Message(en))" },
-              domProps: { value: _vm.newKeyMessage },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.newKeyMessage = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default text-white",
-                staticStyle: { background: "#39c739" },
+                staticClass: "form-control form-input",
+                staticStyle: { flex: "2", "margin-right": "5px" },
                 attrs: {
-                  disabled: !(
-                    _vm.newKey &&
-                    _vm.newKey.length > 0 &&
-                    _vm.newKeyMessage && _vm.newKeyMessage.length > 0
-                  )
+                  type: "text",
+                  placeholder: "Search for a message or key"
                 },
-                on: { click: _vm.addNew }
-              },
-              [_vm._v("New\n            ")]
-            ),
-            _vm._v(" "),
+                domProps: { value: _vm.search },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.showFilter,
+                      expression: "showFilter"
+                    }
+                  ],
+                  staticClass: "form-control form-select",
+                  staticStyle: { flex: "1", "margin-right": "5px" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.showFilter = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "all" } }, [_vm._v("All")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "missings" } }, [
+                    _vm._v("Only Missings")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedLocale,
+                      expression: "selectedLocale"
+                    }
+                  ],
+                  staticClass: "form-control form-select",
+                  staticStyle: { flex: "1" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selectedLocale = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                _vm._l(_vm.locales, function(locale) {
+                  return _c(
+                    "option",
+                    { key: locale.code, domProps: { value: locale.code } },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(locale.language) +
+                          "(" +
+                          _vm._s(locale.code) +
+                          ")\n                "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticStyle: { flex: "1" } }, [
             _c(
               "button",
               {
@@ -14783,7 +14741,91 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex flex-wrap flex-row" },
+        {
+          staticClass: "flex w-full mb-1",
+          staticStyle: { "align-items": "stretch" }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newKey,
+                expression: "newKey"
+              }
+            ],
+            staticClass: "form-control form-input",
+            staticStyle: { flex: "3", "margin-right": "5px" },
+            attrs: { type: "text", placeholder: "New Key" },
+            domProps: { value: _vm.newKey },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.newKey = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newKeyMessage,
+                expression: "newKeyMessage"
+              }
+            ],
+            staticClass: "form-control form-input",
+            staticStyle: { flex: "3", "margin-right": "5px" },
+            attrs: { type: "text", placeholder: "Message(en)" },
+            domProps: { value: _vm.newKeyMessage },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.newKeyMessage = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default text-white",
+              staticStyle: { background: "#39c739", flex: "1" },
+              attrs: {
+                disabled: !(
+                  _vm.newKey &&
+                  _vm.newKey.length > 0 &&
+                  _vm.newKeyMessage && _vm.newKeyMessage.length > 0
+                )
+              },
+              on: { click: _vm.addNew }
+            },
+            [_vm._v("New\n        ")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "my-6",
+        staticStyle: {
+          width: "100%",
+          height: "1px",
+          "border-top": "1px solid #bfbfbf"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "flex flex-wrap flex-row",
+          staticStyle: { "justify-content": "center" }
+        },
         _vm._l(_vm.messagesModel, function(_, index) {
           return _c(
             "div",
@@ -14939,7 +14981,20 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("small", { staticClass: "badge" }, [
+        _vm._v(
+          "İngilizceleri girilmeyen kelimeler diğer dillerde gözükmeyecektir."
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
