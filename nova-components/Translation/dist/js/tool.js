@@ -12858,7 +12858,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
 
 // exports
 
@@ -13283,6 +13283,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -13305,7 +13306,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             selectedLocale: 'en',
             search: null,
             showFilter: 'all',
-            newKey: null
+            newKey: null,
+            newKeyMessage: null
         };
     },
 
@@ -13330,9 +13332,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             this.messagesModel.push({
                 key: this.newKey,
-                messages: {}
+                messages: {
+                    en: this.newKeyMessage
+                }
             });
             this.newKey = null;
+            this.newKeyMessage = null;
         },
         showMessage: function showMessage(index) {
             if (!this.messages[index]) {
@@ -14725,12 +14730,40 @@ var render = function() {
               }
             }),
             _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newKeyMessage,
+                  expression: "newKeyMessage"
+                }
+              ],
+              staticClass: "form-control form-input",
+              attrs: { type: "text", placeholder: "Message(en))" },
+              domProps: { value: _vm.newKeyMessage },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newKeyMessage = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
             _c(
               "button",
               {
                 staticClass: "btn btn-default text-white",
                 staticStyle: { background: "#39c739" },
-                attrs: { disabled: !_vm.newKey || _vm.newKey.length < 1 },
+                attrs: {
+                  disabled: !(
+                    _vm.newKey &&
+                    _vm.newKey.length > 0 &&
+                    _vm.newKeyMessage && _vm.newKeyMessage.length > 0
+                  )
+                },
                 on: { click: _vm.addNew }
               },
               [_vm._v("New\n            ")]

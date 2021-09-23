@@ -20,7 +20,8 @@
 
             <div>
                 <input type="text" class="form-control form-input" placeholder="New Key" v-model="newKey">
-                <button class="btn btn-default text-white" :disabled="!newKey || newKey.length < 1"
+                <input type="text" class="form-control form-input" placeholder="Message(en))" v-model="newKeyMessage">
+                <button class="btn btn-default text-white" :disabled="!((newKey && newKey.length > 0) && (newKeyMessage && newKeyMessage.length > 0))"
                         style="background: #39c739;" @click="addNew">New
                 </button>
                 <button class="btn btn-default btn-primary" @click="save">Save</button>
@@ -90,6 +91,7 @@ export default {
             search: null,
             showFilter: 'all',
             newKey: null,
+            newKeyMessage: null,
         }
     },
     methods: {
@@ -109,9 +111,12 @@ export default {
             }
             this.messagesModel.push({
                 key: this.newKey,
-                messages: {}
+                messages: {
+                    en: this.newKeyMessage
+                }
             })
             this.newKey = null
+            this.newKeyMessage = null
         },
         showMessage(index) {
             if (!this.messages[index]) {
