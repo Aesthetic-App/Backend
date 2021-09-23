@@ -12858,7 +12858,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
 
 // exports
 
@@ -13340,6 +13340,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             var key = this.messages[index].key.toLowerCase();
             var message = this.messages[index].messages[this.selectedLocale];
+
+            if (this.selectedLocale !== 'en' && !this.messagesModel[index].messages['en']) {
+                return false;
+            }
+
             if (this.showFilter === 'missings' && message !== undefined) {
                 return false;
             }
@@ -14579,7 +14584,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "py-2 px-2 flex",
+          staticClass: "py-2 flex",
           staticStyle: {
             "align-items": "center",
             "justify-content": "space-between"

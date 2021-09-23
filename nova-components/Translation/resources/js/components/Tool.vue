@@ -2,7 +2,7 @@
     <div>
         <heading class="mb-6">Translation</heading>
 
-        <div class="py-2 px-2 flex" style="align-items: center;justify-content: space-between">
+        <div class="py-2 flex" style="align-items: center;justify-content: space-between">
             <div class="d-flex">
                 <input class="form-control form-input" style="flex: 1" type="text" v-model="search"
                        placeholder="Search for a message or key">
@@ -119,6 +119,11 @@ export default {
             }
             const key = this.messages[index].key.toLowerCase()
             const message = this.messages[index].messages[this.selectedLocale]
+
+            if (this.selectedLocale !== 'en' && !this.messagesModel[index].messages['en']) {
+                return false;
+            }
+
             if (this.showFilter === 'missings' && message !== undefined) {
                 return false;
             }
