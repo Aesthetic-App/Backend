@@ -13,7 +13,7 @@ class TranslationMessagesApiController extends Controller
         foreach (TranslationMessage::all() as $messageModel) {
 
             $message = $messageModel->messages[$locale] ?? ($messageModel->messages['en'] ?? '');
-            $messages[] = [$messageModel->key => $message];
+            $messages[$messageModel->key] = $message;
         }
 
         return $messages;
