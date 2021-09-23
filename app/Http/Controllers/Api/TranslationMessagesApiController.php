@@ -8,7 +8,14 @@ use Illuminate\Http\Request;
 
 class TranslationMessagesApiController extends Controller
 {
-    public function index() {
-        return TranslationMessage::all();
+    public function locale(string $locale) {
+        $messages = [];
+        foreach (TranslationMessage::all() as $messageModel) {
+
+            $message = $messageModel->messages[$locale] ?? ($messageModel->messages['en'] ?? '');
+            $messages[] = [$messageModel->key => $message];
+        }
+
+        return $messages;
     }
 }

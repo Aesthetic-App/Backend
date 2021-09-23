@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c516a2732ab219a83e8390a36c0d167f",
+    "content-hash": "90e36d34abc450b86c4f57cf59f4c4e6",
     "packages": [
+        {
+            "name": "aesthetic/translation",
+            "version": "dev-translation",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/Translation",
+                "reference": "5736baccd40dd4dde279d56ba4013fde93defc19"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Aesthetic\\Translation\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aesthetic\\Translation\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
