@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Widget;
-use App\Models\Headline;
 use App\Models\WidgetType;
 use Illuminate\Http\Request;
 use App\Models\WidgetCategory;
@@ -55,28 +54,5 @@ class WidgetController extends Controller
         }
 
         return $images;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Headline  $headline
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Headline $headline)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Headline  $headline
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Headline $headline)
-    {
-        //
     }
 }

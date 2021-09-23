@@ -7,13 +7,13 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Yassi\NestedForm\NestedForm;
 
 class WidgetType extends Resource
 {
     use TabsOnEdit;
+    public static $displayInNavigation = false;
 
     public static function label() {
         return 'Widget Type';
