@@ -7,16 +7,15 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Fields\Boolean;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class WidgetCategory extends Resource
 {
     use TabsOnEdit;
-    public static $displayInNavigation = false;
-
-
+    use HasSortableRows;
 
     public static function label() {
         return 'Widget Category';
@@ -58,6 +57,7 @@ class WidgetCategory extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Category Name', 'name')->required(),
+                Boolean::make("Is Featured", "is_featured")->default(false),
                 Boolean::make('Theme Color Enable', 'theme_color_is_enabled')->default(false),
                 Boolean::make('Background Color Enable', 'background_color_is_enabled')->default(false),
                 Boolean::make('Text Enable', 'text_is_enabled')->default(false),
@@ -73,7 +73,6 @@ class WidgetCategory extends Resource
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
                     })->hideFromIndex()
-                //BelongsToMany::make("Widget Types", "widget_types", WidgetType::class),
             ],
         ];
     
