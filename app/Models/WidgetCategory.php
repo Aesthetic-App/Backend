@@ -37,9 +37,9 @@ class WidgetCategory extends Model implements HasMedia
     protected static function boot()
     {
         parent::boot();
-        /*static::addGlobalScope('order', function ($builder) {
+        static::addGlobalScope('order', function ($builder) {
             $builder->orderBy('sort_order', 'asc');
-        });*/
+        });
     }
 
     public function getLimitedWidgetsAttribute()

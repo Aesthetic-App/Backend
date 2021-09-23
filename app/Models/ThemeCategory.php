@@ -31,9 +31,9 @@ class ThemeCategory extends Model implements HasMedia
     {
         parent::boot();
 
-        /*static::addGlobalScope('order', function ($builder) {
+        static::addGlobalScope('order', function ($builder) {
             $builder->orderBy('sort_order', 'asc');
-        });*/
+        });
     }
 
     public function themes()
