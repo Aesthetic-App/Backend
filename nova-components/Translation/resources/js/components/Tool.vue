@@ -37,12 +37,13 @@
 
         <div class="flex flex-wrap flex-row translation-messages" style="justify-content: center">
             <div v-for="(_, index) in messagesModel"
-                 :key="index" style="flex: 1;min-width: 18rem;max-width: 20px"
+                 :key="index" style="flex: 1;min-width: 18rem;max-width: 20px;position: relative"
                  :style="{'display': showMessage(index) ? 'block': 'none'}"
             >
                 <div class="card"
-                     style="margin-right: 5px;margin-bottom: 5px"
+                     style="margin-right: 5px;margin-bottom: 5px;position: relative"
                 >
+                    <p class="delete-message" @click="deleteMessage(index)" v-if="selectedLocale === 'en'">X</p>
                     <div class="card-body py-3 d-flex flex-col" style="border: 1px solid #ddd;"
                          :class="{'new-message': !messages[index]}"
                     >
@@ -111,6 +112,9 @@ export default {
                 }).catch(error => {
                 this.$toasted.show(error, {type: 'error'});
             });
+        },
+        deleteMessage(index) {
+            this.messagesModel = this.messagesModel.filter((_, i) => i !== index)
         },
         addNew() {
             if (this.messages.find(message => message.key === this.newKey)) {
@@ -187,5 +191,14 @@ export default {
         border-bottom: 1px solid #d6d8da;
         padding-left: 5px;
     }
+}
+.delete-message {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: #f37272;
 }
 </style>

@@ -13253,6 +13253,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -13289,6 +13290,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.messages = JSON.parse(JSON.stringify(_this.messagesModel));
             }).catch(function (error) {
                 _this.$toasted.show(error, { type: 'error' });
+            });
+        },
+        deleteMessage: function deleteMessage(index) {
+            this.messagesModel = this.messagesModel.filter(function (_, i) {
+                return i !== index;
             });
         },
         addNew: function addNew() {
@@ -14788,7 +14794,8 @@ var render = function() {
               staticStyle: {
                 flex: "1",
                 "min-width": "18rem",
-                "max-width": "20px"
+                "max-width": "20px",
+                position: "relative"
               },
               style: { display: _vm.showMessage(index) ? "block" : "none" }
             },
@@ -14797,9 +14804,28 @@ var render = function() {
                 "div",
                 {
                   staticClass: "card",
-                  staticStyle: { "margin-right": "5px", "margin-bottom": "5px" }
+                  staticStyle: {
+                    "margin-right": "5px",
+                    "margin-bottom": "5px",
+                    position: "relative"
+                  }
                 },
                 [
+                  _vm.selectedLocale === "en"
+                    ? _c(
+                        "p",
+                        {
+                          staticClass: "delete-message",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteMessage(index)
+                            }
+                          }
+                        },
+                        [_vm._v("X")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -14996,7 +15022,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "/* Scoped Styles */\n.new-message {\n  border: 2px solid #8fc15d !important;\n}\n.badge {\n  font-size: 0.75rem;\n  background: yellow;\n  color: black;\n  padding: 2px 10px;\n  font-weight: bold;\n  border-radius: 4px;\n}\n.translation-messages label {\n  font-size: 1.10rem;\n}\n.translation-messages input {\n  font-size: 1rem;\n  border-bottom: 1px solid #d6d8da;\n  padding-left: 5px;\n}\n", ""]);
+exports.push([module.i, "/* Scoped Styles */\n.new-message {\n  border: 2px solid #8fc15d !important;\n}\n.badge {\n  font-size: 0.75rem;\n  background: yellow;\n  color: black;\n  padding: 2px 10px;\n  font-weight: bold;\n  border-radius: 4px;\n}\n.translation-messages label {\n  font-size: 1.10rem;\n}\n.translation-messages input {\n  font-size: 1rem;\n  border-bottom: 1px solid #d6d8da;\n  padding-left: 5px;\n}\n.delete-message {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  font-weight: bold;\n  font-size: 0.95rem;\n  cursor: pointer;\n  color: #f37272;\n}\n", ""]);
 
 // exports
 

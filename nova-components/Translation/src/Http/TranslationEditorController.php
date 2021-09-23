@@ -39,6 +39,8 @@ class TranslationEditorController extends Controller
     public function save(Request $request)
     {
         $messages = $request->get('data');
+        TranslationMessage::query()
+            ->truncate();
         foreach ($messages as $message) {
          TranslationMessage::query()
              ->updateOrCreate([
