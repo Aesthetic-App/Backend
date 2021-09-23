@@ -20,7 +20,9 @@
 
             <div>
                 <input type="text" class="form-control form-input" placeholder="New Key" v-model="newKey">
-                <button class="btn btn-default text-white" :disabled="!newKey || newKey.length < 1" style="background: #39c739;" @click="addNew">New</button>
+                <button class="btn btn-default text-white" :disabled="!newKey || newKey.length < 1"
+                        style="background: #39c739;" @click="addNew">New
+                </button>
                 <button class="btn btn-default btn-primary" @click="save">Save</button>
             </div>
         </div>
@@ -36,18 +38,21 @@
                     <div class="card-body py-3 d-flex flex-col" style="border: 1px solid #ddd;"
                          :class="{'new-message': !messages[index]}"
                     >
-                        <div class="mb-2 d-flex flex-col px-2">
+                        <div class="mb-3 d-flex flex-col px-2" v-if="selectedLocale === 'en'">
                             <label class="font-bold">Key</label>
-                            <input type="text" placeholder="Key" class="w-full form-control form-input" v-model="messagesModel[index].key">
+                            <input type="text" placeholder="Key"
+                                   class="w-full form-control form-input"
+                                   v-model="messagesModel[index].key">
                         </div>
-                        <div class="mb-2 d-flex flex-col px-2" v-if="selectedLocale !== 'en' && messagesModel[index].messages['en']">
+                        <div class="mb-3 d-flex flex-col px-2"
+                             v-if="selectedLocale !== 'en' && messagesModel[index].messages['en']">
                             <label class="font-bold">English</label>
-                            <p>
-                                {{messagesModel[index].messages['en']}}
+                            <p style="padding-left: .75rem; padding-right: .75rem;">
+                                {{ messagesModel[index].messages['en'] }}
                             </p>
                         </div>
                         <div class="d-flex flex-col px-2">
-                            <label class="font-bold">{{selectedLocale}}</label>
+                            <label class="font-bold">{{ selectedLocale }}</label>
                             <input type="text" placeholder="Message" class="w-full form-control form-input"
                                    v-model="messagesModel[index].messages[selectedLocale]">
                         </div>
@@ -81,7 +86,7 @@ export default {
             messages: [],
             messagesModel: [],
             loaded: false,
-            selectedLocale: 'tr',
+            selectedLocale: 'en',
             search: null,
             showFilter: 'all',
             newKey: null,
@@ -99,10 +104,14 @@ export default {
             });
         },
         addNew() {
-          this.messagesModel.push({
-              key: this.newKey,
-              messages: {}
-          })
+            if (this.messages.find(message => message.key === this.newKey)) {
+                return this.$toasted.show('Key already exists', {type: 'error'});
+            }
+            this.messagesModel.push({
+                key: this.newKey,
+                messages: {}
+            })
+            this.newKey = null
         },
         showMessage(index) {
             if (!this.messages[index]) {

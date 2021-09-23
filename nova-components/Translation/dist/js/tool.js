@@ -12858,7 +12858,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n", ""]);
 
 // exports
 
@@ -13278,6 +13278,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -13297,7 +13302,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             messages: [],
             messagesModel: [],
             loaded: false,
-            selectedLocale: 'tr',
+            selectedLocale: 'en',
             search: null,
             showFilter: 'all',
             newKey: null
@@ -13316,10 +13321,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         addNew: function addNew() {
+            var _this2 = this;
+
+            if (this.messages.find(function (message) {
+                return message.key === _this2.newKey;
+            })) {
+                return this.$toasted.show('Key already exists', { type: 'error' });
+            }
             this.messagesModel.push({
                 key: this.newKey,
                 messages: {}
             });
+            this.newKey = null;
         },
         showMessage: function showMessage(index) {
             if (!this.messages[index]) {
@@ -13344,14 +13357,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
-        var _this2 = this;
+        var _this3 = this;
 
         Nova.request().get(this.apiUrl + 'index').then(function (response) {
-            _this2.loaded = true;
+            _this3.loaded = true;
             if (response.data && response.data.messages) {
-                _this2.messages = response.data.messages;
-                _this2.messagesModel = JSON.parse(JSON.stringify(response.data.messages));
-                _this2.locales = response.data.locales;
+                _this3.messages = response.data.messages;
+                _this3.messagesModel = JSON.parse(JSON.stringify(response.data.messages));
+                _this3.locales = response.data.locales;
             }
         });
     }
@@ -14715,7 +14728,7 @@ var render = function() {
                 attrs: { disabled: !_vm.newKey || _vm.newKey.length < 1 },
                 on: { click: _vm.addNew }
               },
-              [_vm._v("New")]
+              [_vm._v("New\n            ")]
             ),
             _vm._v(" "),
             _c(
@@ -14761,57 +14774,74 @@ var render = function() {
                       staticStyle: { border: "1px solid #ddd" }
                     },
                     [
-                      _c("div", { staticClass: "mb-2 d-flex flex-col px-2" }, [
-                        _c("label", { staticClass: "font-bold" }, [
-                          _vm._v("Key")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.messagesModel[index].key,
-                              expression: "messagesModel[index].key"
-                            }
-                          ],
-                          staticClass: "w-full form-control form-input",
-                          attrs: { type: "text", placeholder: "Key" },
-                          domProps: { value: _vm.messagesModel[index].key },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.messagesModel[index],
-                                "key",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
+                      _vm.selectedLocale === "en"
+                        ? _c(
+                            "div",
+                            { staticClass: "mb-3 d-flex flex-col px-2" },
+                            [
+                              _c("label", { staticClass: "font-bold" }, [
+                                _vm._v("Key")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.messagesModel[index].key,
+                                    expression: "messagesModel[index].key"
+                                  }
+                                ],
+                                staticClass: "w-full form-control form-input",
+                                attrs: { type: "text", placeholder: "Key" },
+                                domProps: {
+                                  value: _vm.messagesModel[index].key
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.messagesModel[index],
+                                      "key",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm.selectedLocale !== "en" &&
                       _vm.messagesModel[index].messages["en"]
                         ? _c(
                             "div",
-                            { staticClass: "mb-2 d-flex flex-col px-2" },
+                            { staticClass: "mb-3 d-flex flex-col px-2" },
                             [
                               _c("label", { staticClass: "font-bold" }, [
                                 _vm._v("English")
                               ]),
                               _vm._v(" "),
-                              _c("p", [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(
-                                      _vm.messagesModel[index].messages["en"]
-                                    ) +
-                                    "\n                        "
-                                )
-                              ])
+                              _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    "padding-left": ".75rem",
+                                    "padding-right": ".75rem"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(
+                                        _vm.messagesModel[index].messages["en"]
+                                      ) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
                             ]
                           )
                         : _vm._e(),
