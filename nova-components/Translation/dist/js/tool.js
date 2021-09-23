@@ -12779,7 +12779,7 @@ exports.default = _default;
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(12)
+  __webpack_require__(30)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -12824,46 +12824,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(13);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(15)("6e5db1d0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(14)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n.new-message {\n    border: 2px solid #8fc15d !important;\n}\n.badge {\n    background: yellow;\n    color: black;\n    padding: 2px 10px;\n    font-weight: bold;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 12 */,
+/* 13 */,
 /* 14 */
 /***/ (function(module, exports) {
 
@@ -13214,7 +13176,6 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_primevue_selectbutton__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_primevue_selectbutton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_primevue_selectbutton__);
-//
 //
 //
 //
@@ -14599,7 +14560,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "w-100 py-2 flex mb-3",
+          staticClass: "w-100 py-2 flex mb-2",
           staticStyle: {
             "align-items": "stretch",
             "justify-content": "space-between"
@@ -14742,7 +14703,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "flex w-full mb-1",
+          staticClass: "flex w-full",
           staticStyle: { "align-items": "stretch" }
         },
         [
@@ -14811,19 +14772,12 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", {
-        staticClass: "my-6",
-        staticStyle: {
-          width: "100%",
-          height: "1px",
-          "border-top": "1px solid #bfbfbf"
-        }
-      }),
+      _c("div", { staticClass: "mb-6" }),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "flex flex-wrap flex-row",
+          staticClass: "flex flex-wrap flex-row translation-messages",
           staticStyle: { "justify-content": "center" }
         },
         _vm._l(_vm.messagesModel, function(_, index) {
@@ -14859,9 +14813,7 @@ var render = function() {
                             "div",
                             { staticClass: "mb-3 d-flex flex-col px-2" },
                             [
-                              _c("label", { staticClass: "font-bold" }, [
-                                _vm._v("Key")
-                              ]),
+                              _c("label", [_vm._v("Key")]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -14872,7 +14824,7 @@ var render = function() {
                                     expression: "messagesModel[index].key"
                                   }
                                 ],
-                                staticClass: "w-full form-control form-input",
+                                staticClass: "w-full form-control",
                                 attrs: { type: "text", placeholder: "Key" },
                                 domProps: {
                                   value: _vm.messagesModel[index].key
@@ -14900,9 +14852,7 @@ var render = function() {
                             "div",
                             { staticClass: "mb-3 d-flex flex-col px-2" },
                             [
-                              _c("label", { staticClass: "font-bold" }, [
-                                _vm._v("English")
-                              ]),
+                              _c("label", [_vm._v("English")]),
                               _vm._v(" "),
                               _c(
                                 "p",
@@ -14927,9 +14877,7 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "d-flex flex-col px-2" }, [
-                        _c("label", { staticClass: "font-bold" }, [
-                          _vm._v(_vm._s(_vm.selectedLocale))
-                        ]),
+                        _c("label", [_vm._v(_vm._s(_vm.selectedLocale))]),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -14944,7 +14892,7 @@ var render = function() {
                                 "messagesModel[index].messages[selectedLocale]"
                             }
                           ],
-                          staticClass: "w-full form-control form-input",
+                          staticClass: "w-full form-control",
                           attrs: { type: "text", placeholder: "Message" },
                           domProps: {
                             value:
@@ -14986,7 +14934,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "mb-2" }, [
       _c("small", { staticClass: "badge" }, [
         _vm._v(
           "İngilizceleri girilmeyen kelimeler diğer dillerde gözükmeyecektir."
@@ -15009,6 +14957,49 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(31);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("7e6a175c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* Scoped Styles */\n.new-message {\n  border: 2px solid #8fc15d !important;\n}\n.badge {\n  font-size: 0.75rem;\n  background: yellow;\n  color: black;\n  padding: 2px 10px;\n  font-weight: bold;\n  border-radius: 4px;\n}\n.translation-messages label {\n  font-size: 1.10rem;\n}\n.translation-messages input {\n  font-size: 1rem;\n  border-bottom: 1px solid #d6d8da;\n  padding-left: 5px;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

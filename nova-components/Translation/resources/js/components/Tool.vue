@@ -2,11 +2,11 @@
     <div>
         <heading class="mb-6">Translation</heading>
 
-        <div>
+        <div class="mb-2">
             <small class="badge">İngilizceleri girilmeyen kelimeler diğer dillerde gözükmeyecektir.</small>
         </div>
 
-        <div class="w-100 py-2 flex mb-3" style="align-items: stretch;justify-content: space-between">
+        <div class="w-100 py-2 flex mb-2" style="align-items: stretch;justify-content: space-between">
             <div class="flex mr-2" style="align-items: stretch;width: 100%">
                 <input class="form-control form-input" style="flex: 2;margin-right: 5px" type="text" v-model="search"
                        placeholder="Search for a message or key">
@@ -26,17 +26,16 @@
                 <button class="btn btn-default btn-primary" @click="save">Save</button>
             </div>
         </div>
-        <div class="flex w-full mb-1" style="align-items: stretch">
+        <div class="flex w-full" style="align-items: stretch">
             <input type="text" style="flex: 3;margin-right: 5px;" class="form-control form-input" placeholder="New Key" v-model="newKey">
             <input type="text" style="flex: 3;margin-right: 5px;" class="form-control form-input" placeholder="Message(en)" v-model="newKeyMessage">
             <button class="btn btn-default text-white" :disabled="!((newKey && newKey.length > 0) && (newKeyMessage && newKeyMessage.length > 0))"
                     style="background: #39c739;flex: 1" @click="addNew">New
             </button>
         </div>
+        <div class="mb-6"></div>
 
-        <div class="my-6" style="width: 100%; height: 1px;border-top: 1px solid #bfbfbf;"/>
-
-        <div class="flex flex-wrap flex-row" style="justify-content: center">
+        <div class="flex flex-wrap flex-row translation-messages" style="justify-content: center">
             <div v-for="(_, index) in messagesModel"
                  :key="index" style="flex: 1;min-width: 18rem;max-width: 20px"
                  :style="{'display': showMessage(index) ? 'block': 'none'}"
@@ -48,21 +47,21 @@
                          :class="{'new-message': !messages[index]}"
                     >
                         <div class="mb-3 d-flex flex-col px-2" v-if="selectedLocale === 'en'">
-                            <label class="font-bold">Key</label>
+                            <label>Key</label>
                             <input type="text" placeholder="Key"
-                                   class="w-full form-control form-input"
+                                   class="w-full form-control"
                                    v-model="messagesModel[index].key">
                         </div>
                         <div class="mb-3 d-flex flex-col px-2"
                              v-if="selectedLocale !== 'en' && messagesModel[index].messages['en']">
-                            <label class="font-bold">English</label>
+                            <label>English</label>
                             <p style="padding-left: .75rem; padding-right: .75rem;">
                                 {{ messagesModel[index].messages['en'] }}
                             </p>
                         </div>
                         <div class="d-flex flex-col px-2">
-                            <label class="font-bold">{{ selectedLocale }}</label>
-                            <input type="text" placeholder="Message" class="w-full form-control form-input"
+                            <label>{{ selectedLocale }}</label>
+                            <input type="text" placeholder="Message" class="w-full form-control"
                                    v-model="messagesModel[index].messages[selectedLocale]">
                         </div>
                     </div>
@@ -166,15 +165,27 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 /* Scoped Styles */
 .new-message {
     border: 2px solid #8fc15d !important;
 }
 .badge {
+    font-size: 0.75rem;
     background: yellow;
     color: black;
     padding: 2px 10px;
     font-weight: bold;
+    border-radius: 4px;
+}
+.translation-messages {
+    label {
+        font-size: 1.10rem;
+    }
+    input {
+        font-size: 1rem;
+        border-bottom: 1px solid #d6d8da;
+        padding-left: 5px;
+    }
 }
 </style>
