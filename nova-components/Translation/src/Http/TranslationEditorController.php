@@ -39,8 +39,10 @@ class TranslationEditorController extends Controller
     public function save(Request $request)
     {
         $messages = $request->get('data');
+
         TranslationMessage::query()
-            ->truncate();
+            ->whereIn('key', $request->get('deletedKeys', []))
+            ->delete();
         foreach ($messages as $message) {
          TranslationMessage::query()
              ->updateOrCreate([
@@ -49,5 +51,7 @@ class TranslationEditorController extends Controller
                  'messages' => $message['messages']
              ]);
         }
+
+
     }
 }

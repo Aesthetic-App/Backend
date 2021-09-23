@@ -13277,7 +13277,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             search: null,
             showFilter: 'all',
             newKey: null,
-            newKeyMessage: null
+            newKeyMessage: null,
+            deletedKeys: []
         };
     },
 
@@ -13285,17 +13286,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         save: function save() {
             var _this = this;
 
-            Nova.request().post(this.apiUrl + 'save', { data: this.messagesModel }).then(function () {
+            Nova.request().post(this.apiUrl + 'save', { data: this.messagesModel, deletedKeys: this.deletedKeys }).then(function () {
+                _this.deletedKeys = [];
                 _this.$toasted.show('Saved', { type: 'success' });
                 _this.messages = JSON.parse(JSON.stringify(_this.messagesModel));
             }).catch(function (error) {
                 _this.$toasted.show(error, { type: 'error' });
             });
         },
-        deleteMessage: function deleteMessage(index) {
-            this.messagesModel = this.messagesModel.filter(function (_, i) {
-                return i !== index;
+        deleteMessage: function deleteMessage(key) {
+            this.messagesModel = this.messagesModel.filter(function (msg) {
+                return msg.key !== key;
             });
+            this.deletedKeys.push(key);
         },
         addNew: function addNew() {
             var _this2 = this;
@@ -14818,7 +14821,9 @@ var render = function() {
                           staticClass: "delete-message",
                           on: {
                             click: function($event) {
-                              return _vm.deleteMessage(index)
+                              return _vm.deleteMessage(
+                                _vm.messagesModel[index].key
+                              )
                             }
                           }
                         },

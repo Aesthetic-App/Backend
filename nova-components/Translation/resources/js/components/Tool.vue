@@ -43,7 +43,7 @@
                 <div class="card"
                      style="margin-right: 5px;margin-bottom: 5px;position: relative"
                 >
-                    <p class="delete-message" @click="deleteMessage(index)" v-if="selectedLocale === 'en'">X</p>
+                    <p class="delete-message" @click="deleteMessage(messagesModel[index].key)" v-if="selectedLocale === 'en'">X</p>
                     <div class="card-body py-3 d-flex flex-col" style="border: 1px solid #ddd;"
                          :class="{'new-message': !messages[index]}"
                     >
@@ -100,21 +100,24 @@ export default {
             showFilter: 'all',
             newKey: null,
             newKeyMessage: null,
+            deletedKeys: [],
         }
     },
     methods: {
         save() {
             Nova.request()
-                .post(this.apiUrl + 'save', {data: this.messagesModel})
+                .post(this.apiUrl + 'save', {data: this.messagesModel, deletedKeys: this.deletedKeys})
                 .then(() => {
+                    this.deletedKeys = []
                     this.$toasted.show('Saved', {type: 'success'});
                     this.messages = JSON.parse(JSON.stringify(this.messagesModel))
                 }).catch(error => {
                 this.$toasted.show(error, {type: 'error'});
             });
         },
-        deleteMessage(index) {
-            this.messagesModel = this.messagesModel.filter((_, i) => i !== index)
+        deleteMessage(key) {
+            this.messagesModel = this.messagesModel.filter(msg => msg.key !== key)
+            this.deletedKeys.push(key)
         },
         addNew() {
             if (this.messages.find(message => message.key === this.newKey)) {
