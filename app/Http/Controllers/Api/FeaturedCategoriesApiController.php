@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ThemeCategory;
+use App\Models\WallpaperCategory;
 use App\Models\WidgetCategory;
 use Illuminate\Http\Request;
 use OptimistDigital\NovaSettings\Models\Settings;
@@ -18,9 +20,9 @@ class FeaturedCategoriesApiController extends Controller
         return [
           'widget' => WidgetCategory::query()
             ->find(['id' => $widgetCategoryID->value ?? 0])->first(),
-            'wallpaper' => WidgetCategory::query()
+            'wallpaper' => WallpaperCategory::query()
                 ->find(['id' => $wallpaperCategoryID->value ?? 0])->first(),
-            'theme' => WidgetCategory::query()
+            'theme' => ThemeCategory::query()
                 ->find(['id' => $themeCategoryID->value ?? 0])->first(),
         ];
     }
