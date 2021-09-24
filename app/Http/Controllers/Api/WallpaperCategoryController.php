@@ -30,18 +30,28 @@ class WallpaperCategoryController extends Controller
      */
     public function images(Request $request, WallpaperCategory $category)
     {
+        if ((bool)$request->get('without_pagination', false) === true) {
+            $imagesCollection = $category->media()->where("collection_name", 'images')
+                ->get();
+            return $this->transformImagesCollection($imagesCollection)->toArray();
+        }
+
         $perPage = $request->per_page ?? 5;
         /** @var LengthAwarePaginator $pagination */
         $pagination = $category->media()->where("collection_name", 'images')->paginate($perPage);
 
-        $pagination->getCollection()->transform(function($x) {
+        $this->transformImagesCollection($pagination->getCollection());
+
+        return $pagination;
+    }
+
+    private function transformImagesCollection($collection) {
+        return $collection->transform(function($x) {
                 return [
                     'normal' => $x->getFullUrl(),
                     'thumbnail' => $x->getFullUrl('thumbnail'),
                 ];
         });
-
-        return $pagination;
     }
 
     /**
