@@ -23,7 +23,10 @@ class WidgetCategoryApiController extends Controller
 
     public function widgets(Request $request, WidgetCategory $category)
     {
-        
+        if ((bool)$request->get('without_pagination', false) === true) {
+            return $category->widgets;
+        }
+
         $perPage = $request->get('per_page', 5);
         return $category->widgets()->paginate($perPage);
     }
