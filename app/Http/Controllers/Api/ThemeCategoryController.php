@@ -38,6 +38,9 @@ class ThemeCategoryController extends Controller
 
     public function themes(Request $request, ThemeCategory $category)
     {
+        if ((bool)$request->get('without_pagination', false) === true) {
+            return $category->themes;
+        }
         $perPage = $request->get('per_page', 5);
         return $category->themes()->paginate($perPage);
     }
