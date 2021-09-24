@@ -28,32 +28,42 @@ class ThemeController extends Controller
         public function images(Request $request, Theme $theme)
     {
         $perPage = $request->per_page ?? 5;
+
+        if ((bool)$request->get('without_pagination', false) === true) {
+            $imagesCollection = $theme->media()
+                ->where("collection_name", 'images')
+                ->get();
+            return $this->transformImagesCollection($imagesCollection)->toArray();
+        }
+        
         /** @var LengthAwarePaginator $pagination */
         $pagination = $theme->media()->where("collection_name", 'images')->paginate($perPage);
-
-        $pagination->getCollection()->transform(function($x) {
-                return [
-                    'normal' => $x->getFullUrl(),
-                    'thumbnail' => $x->getFullUrl('thumbnail'),
-                ];
-        });
-
+        $this->transformImagesCollection($pagination->getCollection());
         return $pagination;
     }
 
     public function icons(Request $request, Theme $theme)
     {
         $perPage = $request->per_page ?? 5;
+        if ((bool)$request->get('without_pagination', false) === true) {
+            $imagesCollection = $theme->media()
+                ->where("collection_name", 'icons')
+                ->get();
+            return $this->transformImagesCollection($imagesCollection)->toArray();
+        }
+        
         /** @var LengthAwarePaginator $pagination */
         $pagination = $theme->media()->where("collection_name", 'icons')->paginate($perPage);
+        $this->transformImagesCollection($pagination->getCollection());
+        return $pagination;
+    }
 
-        $pagination->getCollection()->transform(function($x) {
+    private function transformImagesCollection($collection) {
+        return $collection->transform(function($x) {
                 return [
                     'normal' => $x->getFullUrl(),
                     'thumbnail' => $x->getFullUrl('thumbnail'),
                 ];
         });
-
-        return $pagination;
     }
 }
