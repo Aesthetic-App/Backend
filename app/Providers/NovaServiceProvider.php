@@ -3,13 +3,14 @@
 namespace App\Providers;
 
 use Aesthetic\Translation\Translation;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Nova;
 use App\Models\ThemeCategory;
 use App\Models\WallpaperCategory;
 use App\Models\WidgetCategory;
-use Laravel\Nova\Nova;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -38,6 +39,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         \OptimistDigital\NovaSettings\NovaSettings::addSettingsFields([
                 Boolean::make('Test page is active', 'test_page_is_active'),
+                Text::make("Review Version", "review_version"),
                 Select::make('Featured Theme Category')
                     ->options($themeCategories),
                 Select::make('Featured Widget Category')
