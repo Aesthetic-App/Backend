@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\BelongsTo;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Widget extends Resource
 {
     use TabsOnEdit;
+    use HasSortableRows;
 
     public static function label() {
         return 'Widget';
@@ -53,7 +54,6 @@ class Widget extends Resource
     public function fields(Request $request)
     {
         $tabs = [
-            
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Widget Name', 'name')->required(),

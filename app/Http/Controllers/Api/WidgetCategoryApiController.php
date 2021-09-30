@@ -15,6 +15,10 @@ class WidgetCategoryApiController extends Controller
      */
     public function index(Request $request)
     {
+        if ((bool)$request->get('without_pagination', false) === true) {
+            return WidgetCategory::all();
+        }
+
         $perPage = $request->get('per_page', 5);
         return WidgetCategory::query()
             ->paginate($perPage);
