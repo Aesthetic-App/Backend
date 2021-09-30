@@ -11,10 +11,12 @@ use Laravel\Nova\Fields\Text;
 use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class Theme extends Resource
 {
     use TabsOnEdit;
+    use HasSortableRows;
 
     public static function label() {
         return 'Theme';
