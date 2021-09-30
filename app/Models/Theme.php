@@ -28,6 +28,15 @@ class Theme extends Model implements HasMedia
 
     protected $hidden = ['media', 'pivot'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderBy('sort_order', 'asc');
+        });
+    }
+
     public function categories()
     {
         return $this->belongsToMany(ThemeCategory::class, "theme_theme_category");
