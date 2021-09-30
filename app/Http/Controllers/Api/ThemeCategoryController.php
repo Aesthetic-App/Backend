@@ -15,6 +15,10 @@ class ThemeCategoryController extends Controller
      */
     public function index(Request $request)
     {
+        if ((bool)$request->get('without_pagination', false) === true) {
+            return ThemeCategory::all();
+        }
+
         $perPage = $request->get('per_page', 5);
         return ThemeCategory::query()
             ->paginate($perPage);
