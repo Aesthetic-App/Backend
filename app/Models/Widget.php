@@ -33,6 +33,15 @@ class Widget extends Model implements HasMedia
         'media'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderBy('sort_order', 'asc');
+        });
+    }
+
     public function widget_type()
     {
         return $this->belongsTo(WidgetType::class, "type_id");
