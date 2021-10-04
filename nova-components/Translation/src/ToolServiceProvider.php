@@ -1,13 +1,14 @@
 <?php
 
-namespace JpegUpload\Empty;
+namespace Aesthetic\Translation;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
+use Aesthetic\Translation\Http\Middleware\Authorize;
 
-class CardServiceProvider extends ServiceProvider
+class ToolServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -16,18 +17,19 @@ class CardServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'translation');
+
         $this->app->booted(function () {
             $this->routes();
         });
 
         Nova::serving(function (ServingNova $event) {
-            Nova::script('empty', __DIR__.'/../dist/js/card.js');
-            Nova::style('empty', __DIR__.'/../dist/css/card.css');
+            //
         });
     }
 
     /**
-     * Register the card's routes.
+     * Register the tool's routes.
      *
      * @return void
      */
@@ -37,18 +39,13 @@ class CardServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middleware(['nova'])
-                ->prefix('nova-vendor/empty')
+        Route::middleware(['nova', Authorize::class])
+                ->prefix('nova-vendor/translation-editor')
                 ->group(__DIR__.'/../routes/api.php');
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'translation-editor');
     }
 }

@@ -9,7 +9,9 @@
         "prod": "npm run production",
         "production": "mix --production",
         "build-empty": "cd nova-components/Empty && npm run dev",
-        "build-empty-prod": "cd nova-components/Empty && npm run prod"
+        "build-empty-prod": "cd nova-components/Empty && npm run prod",
+        "build-translation": "cd nova-components/Translation && npm run dev",
+        "build-translation-prod": "cd nova-components/Translation && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.21",

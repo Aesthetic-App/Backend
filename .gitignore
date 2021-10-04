@@ -13,6 +13,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+.idea
+
 # Generated files
 .idea/**/contentModel.xml
 
@@ -288,3 +290,5 @@ temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,laravel,intellij,linux,node
 .DS_Store
+
+!nova-components/Translation/dist

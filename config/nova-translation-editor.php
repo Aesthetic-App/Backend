@@ -1,0 +1,39 @@
+<?php
+return [
+    'groups' => [
+        'mobile'
+    ],
+    'languages' => [
+        'en',
+        'tr',
+        'fr',
+        'ca',
+        'cs',
+        "da",
+        "nl",
+        "fi",
+        "de",
+        "el",
+        "hi",
+        "hu",
+        "id",
+        "it",
+        "ja",
+        "ko",
+        "ms",
+        "es-MX",
+        "nb",
+        "pl",
+        "pt",
+        "ro",
+        "ru",
+        "zh-CN",
+        "sk",
+        "es",
+        "sv",
+        "th",
+        "zh-TW",
+        "uk",
+        "vi"
+    ]
+];
