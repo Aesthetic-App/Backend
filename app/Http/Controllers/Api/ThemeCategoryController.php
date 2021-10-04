@@ -16,7 +16,11 @@ class ThemeCategoryController extends Controller
     public function index(Request $request)
     {
         if ((bool)$request->get('without_pagination', false) === true) {
-            return ThemeCategory::all();
+            return ThemeCategory::query()
+                ->with(['themes'])
+                ->get()
+                ->each->setAppends(['cover_image', 'featured_cover_image']);
+
         }
 
         $perPage = $request->get('per_page', 5);
