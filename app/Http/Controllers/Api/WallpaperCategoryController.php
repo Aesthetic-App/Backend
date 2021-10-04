@@ -18,7 +18,8 @@ class WallpaperCategoryController extends Controller
     public function index(Request $request)
     {
         if ((bool)$request->get('without_pagination', false) === true) {
-            return WallpaperCategory::all();
+            return WallpaperCategory::all()
+                ->each->setAppends(['cover_image', 'featured_cover_image', 'images']);
         }
 
         $perPage = $request->get('per_page', 5);

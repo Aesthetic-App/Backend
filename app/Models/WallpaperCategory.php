@@ -49,6 +49,16 @@ class WallpaperCategory extends Model implements HasMedia
 
     }
 
+    public function getImagesAttribute()
+    {
+        return $this->media->map(function($media) {
+                return [
+                    'normal' => $media->getFullUrl(),
+                    'thumbnail' => $media->getFullUrl('thumbnail'),
+                ];
+            });
+    }
+
     public function getLimitedImagesAttribute()
     {
         return $this->media()

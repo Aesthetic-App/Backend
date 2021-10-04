@@ -1,6 +1,6 @@
 {
-    "name": "jpeg-upload/empty",
-    "description": "A Laravel Nova card.",
+    "name": "aesthetic/translation",
+    "description": "A Laravel Nova tool.",
     "keywords": [
         "laravel",
         "nova"
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "JpegUpload\\Empty\\": "src/"
+            "Aesthetic\\Translation\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "JpegUpload\\Empty\\CardServiceProvider"
+                "Aesthetic\\Translation\\ToolServiceProvider"
             ]
         }
     },

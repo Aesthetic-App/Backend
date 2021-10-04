@@ -16,7 +16,10 @@ class WidgetCategoryApiController extends Controller
     public function index(Request $request)
     {
         if ((bool)$request->get('without_pagination', false) === true) {
-            return WidgetCategory::all();
+            return WidgetCategory::query()
+                ->with(['widgets'])
+                ->get()
+                ->each->setAppends(['cover_image', 'featured_cover_image']);
         }
 
         $perPage = $request->get('per_page', 5);

@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
+use Aesthetic\Translation\Translation;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Nova;
 use App\Models\ThemeCategory;
-use Laravel\Nova\Fields\Text;
+use App\Models\WallpaperCategory;
 use App\Models\WidgetCategory;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
-use App\Models\WallpaperCategory;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -86,7 +87,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            
+
         ];
     }
 
@@ -108,7 +109,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         public function tools()
     {
         return [
-            new \OptimistDigital\NovaSettings\NovaSettings
+            new \OptimistDigital\NovaSettings\NovaSettings,
+            new Translation,
         ];
     }
 
