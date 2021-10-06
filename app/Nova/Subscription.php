@@ -68,6 +68,7 @@ class Subscription extends Resource
                 RelationSelect::make("Regions", "regions", Region::class)
                     ->relationLabel('code')
                     ->relationModel(\App\Models\Region::class)
+                    ->hideFromIndex()
                     ->options(\App\Models\Region::all()),
             ]
         ];
