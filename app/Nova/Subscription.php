@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Aesthetic\RelationSelect\RelationSelect;
 use Eminiarts\Tabs\Tabs;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
@@ -64,7 +65,10 @@ class Subscription extends Resource
                 Boolean::make("Default", "is_default")->default(false),
             ],
             'Regions' => [
-                MorphToMany::make("Regions", "regions", Region::class),
+                RelationSelect::make("Regions", "regions", Region::class)
+                    ->relationLabel('code')
+                    ->relationModel(\App\Models\Region::class)
+                    ->options(\App\Models\Region::all()),
             ]
         ];
         return [

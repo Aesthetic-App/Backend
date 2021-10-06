@@ -11,7 +11,7 @@ class Subscription extends Model
 
     protected $guarded = [];
 
-    public function regions()
+    public function regions(): \Illuminate\Database\Eloquent\Relations\MorphToMany
     {
         return $this->morphToMany(Region::class, 'related','region_relations');
     }
