@@ -9,6 +9,11 @@ class Region extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'code';
+    }
+
     protected $guarded = [];
 
     public function subscriptions(): \Illuminate\Database\Eloquent\Relations\MorphToMany
