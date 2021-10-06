@@ -292,3 +292,4 @@ temp/
 .DS_Store
 
 !nova-components/Translation/dist
+!nova-components/RelationSelect/dist
