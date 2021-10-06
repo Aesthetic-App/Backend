@@ -1,6 +1,5 @@
 <template>
     <input
-        class='form-control'
         ref='inputRef'
         :value='inputValue'
         type='text'
