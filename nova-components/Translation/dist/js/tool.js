@@ -12779,7 +12779,7 @@ exports.default = _default;
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(30)
+  __webpack_require__(12)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -12824,8 +12824,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 12 */,
-/* 13 */,
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(13);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("7e6a175c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* Scoped Styles */\n.new-message {\n  border: 2px solid #8fc15d !important;\n}\n.badge {\n  font-size: 0.75rem;\n  background: yellow;\n  color: black;\n  padding: 2px 10px;\n  font-weight: bold;\n  border-radius: 4px;\n}\n.translation-messages label {\n  font-size: 1.10rem;\n}\n.translation-messages input {\n  font-size: 1rem;\n  border-bottom: 1px solid #d6d8da;\n  padding-left: 5px;\n}\n.delete-message {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  font-weight: bold;\n  font-size: 0.95rem;\n  cursor: pointer;\n  color: #f37272;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
@@ -14683,7 +14721,7 @@ var render = function() {
                     [
                       _vm._v(
                         "\n                    " +
-                          _vm._s(locale.language) +
+                          _vm._s(locale.name) +
                           "(" +
                           _vm._s(locale.code) +
                           ")\n                "
@@ -14988,49 +15026,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(31);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(15)("7e6a175c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(14)(false);
-// imports
-
-
-// module
-exports.push([module.i, "/* Scoped Styles */\n.new-message {\n  border: 2px solid #8fc15d !important;\n}\n.badge {\n  font-size: 0.75rem;\n  background: yellow;\n  color: black;\n  padding: 2px 10px;\n  font-weight: bold;\n  border-radius: 4px;\n}\n.translation-messages label {\n  font-size: 1.10rem;\n}\n.translation-messages input {\n  font-size: 1rem;\n  border-bottom: 1px solid #d6d8da;\n  padding-left: 5px;\n}\n.delete-message {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  font-weight: bold;\n  font-size: 0.95rem;\n  cursor: pointer;\n  color: #f37272;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

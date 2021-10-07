@@ -11,12 +11,20 @@
         "build-empty": "cd nova-components/Empty && npm run dev",
         "build-empty-prod": "cd nova-components/Empty && npm run prod",
         "build-translation": "cd nova-components/Translation && npm run dev",
-        "build-translation-prod": "cd nova-components/Translation && npm run prod"
+        "build-translation-prod": "cd nova-components/Translation && npm run prod",
+        "build-color-picker": "cd nova-components/ColorPicker && npm run dev",
+        "build-color-picker-prod": "cd nova-components/ColorPicker && npm run prod",
+        "build-relation-select": "cd nova-components/RelationSelect && npm run dev",
+        "build-relation-select-prod": "cd nova-components/RelationSelect && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "primeicons": "^4.1.0",
+        "primevue": "^2.6.0"
     }
 }

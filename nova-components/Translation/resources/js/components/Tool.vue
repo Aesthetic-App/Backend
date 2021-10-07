@@ -17,7 +17,7 @@
 
                 <select class="form-control form-select" style="flex:1" v-model="selectedLocale">
                     <option v-for="locale in locales" :key="locale.code" :value="locale.code">
-                        {{ locale.language }}({{ locale.code }})
+                        {{ locale.name }}({{ locale.code }})
                     </option>
                 </select>
             </div>

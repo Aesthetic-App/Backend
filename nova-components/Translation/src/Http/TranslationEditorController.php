@@ -2,6 +2,7 @@
 
 namespace Aesthetic\Translation\Http;
 
+use App\Models\Language;
 use App\Models\TranslationMessage;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -13,10 +14,8 @@ class TranslationEditorController extends Controller
 
     public function index(Request $request)
     {
-        $config = config('translation-editor');
-        $locales = $config['locales'];
         $response = [
-            'locales' => $locales,
+            'locales' => Language::all(),
             'messages' => TranslationMessage::all(),
         ];
 

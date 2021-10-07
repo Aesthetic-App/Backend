@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.4",
@@ -28,7 +31,8 @@
         "spatie/laravel-sluggable": "^2.6",
         "tinify/tinify": "^1.5",
         "yassi/nova-nested-form": "^3.0",
-        "aesthetic/translation": "*"
+        "aesthetic/translation": "*",
+        "aesthetic/relation-select": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -80,6 +84,10 @@
         {
             "type": "path",
             "url": "./nova-components/Translation"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/RelationSelect"
         }
     ],
     "minimum-stability": "dev",
