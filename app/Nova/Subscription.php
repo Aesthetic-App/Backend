@@ -7,12 +7,10 @@ use Eminiarts\Tabs\Tabs;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\MorphedByMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
-use Yassi\NestedForm\NestedForm;
 
 class Subscription extends Resource
 {
@@ -57,6 +55,17 @@ class Subscription extends Resource
                 Text::make('Name', 'name')->required(),
                 Text::make('Identifier', 'identifier')->required(),
                 Text::make('Permission', 'permission')->required(),
+                Select::make("Trial Duration", "trial_duration")
+                    ->options([
+                        '3 days' => "3 Days",
+                        "1 week" => "A Week",
+                        "2 weeks" => "Two Weeks",
+                        "1 month" => "A Month",
+                        "2 months" => "Two Months",
+                        "3 months" => "Three Months",
+                        "6 months" => "Six Months",
+                        "Annual" => "A Year",
+                    ]),
                 Select::make("Type", "type")
                 ->options([
                     'direct' => "Direct",
