@@ -57,6 +57,17 @@ class Subscription extends Resource
                 Text::make('Name', 'name')->required(),
                 Text::make('Identifier', 'identifier')->required(),
                 Text::make('Permission', 'permission')->required(),
+                Select::make("Trial Duration", "trial_duration")
+                    ->options([
+                        '3_days' => "3 Days",
+                        "1_week" => "A Week",
+                        "2_weeks" => "Two Weeks",
+                        "1_month" => "A Month",
+                        "2_months" => "Two Months",
+                        "3_months" => "Three Months",
+                        "6_months" => "Six Months",
+                        "1_year" => "A Year",
+                    ]),
                 Select::make("Type", "type")
                 ->options([
                     'direct' => "Direct",
