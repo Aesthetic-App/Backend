@@ -37,6 +37,11 @@ class Theme extends Model implements HasMedia
         });
     }
 
+    public function icons()
+    {
+        return $this->hasMany(Icon::class);
+    }
+
     public function categories()
     {
         return $this->belongsToMany(ThemeCategory::class, "theme_theme_category");
