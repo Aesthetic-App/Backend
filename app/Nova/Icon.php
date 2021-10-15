@@ -59,18 +59,20 @@ class Icon extends Resource
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Name', 'name')->required(),
                 BelongsTo::make("Theme", "theme", Theme::class),
-                Images::make('Custom', 'custom_icon')->showStatistics()
+                Images::make('Custom Icon', 'custom_icon')->showStatistics()
                     ->setFileName(function($originalFilename, $extension){
                         return md5($originalFilename) . '.' . $extension;
                     })->conversionOnDetailView("small-image")
                     ->conversionOnForm("small-image")
-                    ->conversionOnIndexView("small-image"),
+                    ->conversionOnIndexView("small-image")
+                ->rules('required', 'size:1'),
                 Images::make('Original', 'original_icon')->showStatistics()
                     ->setFileName(function($originalFilename, $extension){
                         return md5($originalFilename) . '.' . $extension;
                     })->conversionOnDetailView("small-image")
                     ->conversionOnForm("small-image")
-                    ->conversionOnIndexView("small-image"),
+                    ->conversionOnIndexView("small-image")
+                    ->rules('max:1'),
             ],
         ];
         return [

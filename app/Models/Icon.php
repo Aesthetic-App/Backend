@@ -22,7 +22,7 @@ class Icon extends Model implements HasMedia
         'sort_when_creating' => true,
     ];
 
-    public function theme()
+    public function theme(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Theme::class);
     }
