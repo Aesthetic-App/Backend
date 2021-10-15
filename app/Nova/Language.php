@@ -57,7 +57,7 @@ class Language extends Resource
             ],
         ];
         return [
-            new Tabs("Type Edit/Create", $tabs),
+            new Tabs("Language Edit/Create", $tabs),
         ];
 }
 
