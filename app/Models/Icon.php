@@ -26,6 +26,15 @@ class Icon extends Model implements HasMedia
 
     protected $appends = ['custom', 'original'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderBy('sort_order', 'asc');
+        });
+    }
+
     public function theme(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Theme::class);
