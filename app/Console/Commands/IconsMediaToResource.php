@@ -51,7 +51,7 @@ class IconsMediaToResource extends Command
                             'theme_id' => $theme->id,
                             'sort_order' => $media->order_column
                         ]);
-                    $media->copy($icon, 'custom_icon', 'public');
+                    $media->copy($icon, 'custom_icon', 's3');
                 });
         });
         DB::commit();
