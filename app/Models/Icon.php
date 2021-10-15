@@ -17,10 +17,14 @@ class Icon extends Model implements HasMedia
 
     protected $guarded = [];
 
+    protected $hidden = ['media'];
+
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
+
+    protected $appends = ['custom', 'original'];
 
     public function theme(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -36,5 +40,23 @@ class Icon extends Model implements HasMedia
         $this->addMediaConversion('small-image')
             ->width(130)
             ->height(130);
+    }
+
+    public function getCustomAttribute()
+    {
+        $x = $this->getFirstMedia("custom_icon");
+        return [
+            'normal' => $x ? $x->getFullUrl() : '',
+            'thumbnail' => $x ? $x->getFullUrl('thumbnail') : '',
+        ];
+    }
+
+    public function getOriginalAttribute()
+    {
+        $x = $this->getFirstMedia("original_icon");
+        return [
+            'normal' => $x ? $x->getFullUrl() : '',
+            'thumbnail' => $x ? $x->getFullUrl('thumbnail') : '',
+        ];
     }
 }
