@@ -42,7 +42,7 @@ class IconsMediaToResource extends Command
     public function handle()
     {
         DB::beginTransaction();
-        Theme::query()->take(5)->each(function(Theme $theme) {
+        Theme::all()->each(function(Theme $theme) {
             $theme->media()->where("collection_name", 'icons')
                 ->each(function(Media $media) use($theme) {
                     $icon = Icon::query()
