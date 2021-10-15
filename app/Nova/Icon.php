@@ -2,20 +2,25 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\IconTHEME;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
+use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
-class Language extends Resource
+class Icon extends Resource
 {
     use TabsOnEdit;
+    use HasSortableRows;
 
-    public static $group = 'Translation';
+    public static $group = 'Theme';
 
     public static function label() {
-        return 'Languages';
+        return 'Icons';
     }
 
     /**
@@ -23,7 +28,7 @@ class Language extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\Language::class;
+    public static $model = \App\Models\Icon::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -38,7 +43,7 @@ class Language extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'code'
+        'name', 'theme_id'
     ];
 
     /**
@@ -53,11 +58,25 @@ class Language extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Name', 'name')->required(),
-                Text::make('Code', 'code')->required(),
+                BelongsTo::make("Theme", "theme", Theme::class),
+                Images::make('Custom Icon', 'custom_icon')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension){
+                        return md5($originalFilename) . '.' . $extension;
+                    })->conversionOnDetailView("small-image")
+                    ->conversionOnForm("small-image")
+                    ->conversionOnIndexView("small-image")
+                ->rules('required', 'size:1'),
+                Images::make('Original', 'original_icon')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension){
+                        return md5($originalFilename) . '.' . $extension;
+                    })->conversionOnDetailView("small-image")
+                    ->conversionOnForm("small-image")
+                    ->conversionOnIndexView("small-image")
+                    ->rules('max:1'),
             ],
         ];
         return [
-            new Tabs("Language Edit/Create", $tabs),
+            new Tabs("Icon Edit/Create", $tabs),
         ];
 }
 
@@ -80,7 +99,9 @@ class Language extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new IconTHEME()
+        ];
     }
 
     /**

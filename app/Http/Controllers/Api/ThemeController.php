@@ -18,7 +18,7 @@ class ThemeController extends Controller
         $perPage = $request->get('per_page', 5);
         return Theme::query()
             ->paginate($perPage);
-    }   
+    }
 
     public function show(Theme $theme)
     {
@@ -35,11 +35,16 @@ class ThemeController extends Controller
                 ->get();
             return $this->transformImagesCollection($imagesCollection)->toArray();
         }
-        
+
         /** @var LengthAwarePaginator $pagination */
         $pagination = $theme->media()->where("collection_name", 'images')->paginate($perPage);
         $this->transformImagesCollection($pagination->getCollection());
         return $pagination;
+    }
+
+    public function iconsv2(Request $request, Theme $theme)
+    {
+        return $theme->icons;
     }
 
     public function icons(Request $request, Theme $theme)
@@ -51,7 +56,7 @@ class ThemeController extends Controller
                 ->get();
             return $this->transformImagesCollection($imagesCollection)->toArray();
         }
-        
+
         /** @var LengthAwarePaginator $pagination */
         $pagination = $theme->media()->where("collection_name", 'icons')->paginate($perPage);
         $this->transformImagesCollection($pagination->getCollection());
