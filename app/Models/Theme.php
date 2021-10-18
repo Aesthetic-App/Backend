@@ -22,7 +22,7 @@ class Theme extends Model implements HasMedia
 
     protected $fillable = ['title'];
 
-    protected $appends = ['cover_image_url'];
+    protected $appends = ['cover_image_url', 'category_ids'];
 
     protected $with = [];
 
@@ -62,5 +62,11 @@ class Theme extends Model implements HasMedia
     {
         $media = $this->getMedia("cover_image")->first();
         return $media ? $media->getFullUrl() : null;
+    }
+
+    public function getCategoryIdsAttribute()
+    {
+        return $this->categories()->select("theme_categories.id")
+            ->pluck("id")->toArray();
     }
 }
