@@ -8,14 +8,13 @@ use Illuminate\Http\Request;
 
 class ThemeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $perPage = $request->get('per_page', 5);
+        if ((bool)$request->get('without_pagination', false) === true) {
+            return Theme::all();
+        }
+
         return Theme::query()
             ->paginate($perPage);
     }
