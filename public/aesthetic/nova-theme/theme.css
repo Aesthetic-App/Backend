@@ -39,3 +39,7 @@ div[data-testid="content"] h1 {
     letter-spacing: 0.05rem;
     color: black !important;
 }
+
+.btn-outline {
+    color: var(--primary-dark) !important;
+}
