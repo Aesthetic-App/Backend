@@ -1,0 +1,41 @@
+:root {
+  --primary: white;
+  --primary-dark: black;
+  --primary-70: black;
+  --primary-50: black;
+  --primary-30: black;
+  --primary-10: black;
+  --logo: black;
+  --sidebar-icon: white;
+}
+
+.bg-grad-sidebar {
+    background: black;
+}
+
+.btn-primary {
+    color: black !important;
+}
+
+.btn-primary:hover {
+    color: var(--primary) !important;
+}
+
+.hover\:text-primary:hover{
+    color: var(--primary-dark) !important;
+}
+
+input[dusk="search"] {
+    border-radius: 4px !important;
+}
+
+div[data-testid="content"] .relative div:first-child {
+    margin-bottom: 2px !important;;
+}
+
+div[data-testid="content"] h1 {
+    font-weight: bold;
+    font-size: 1.7rem;
+    letter-spacing: 0.05rem;
+    color: black !important;
+}
