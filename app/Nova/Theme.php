@@ -60,7 +60,7 @@ class Theme extends Resource
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Theme Name', 'title')->required(),
                 AttachMany::make('Categories', 'categories', ThemeCategory::class)
-                ->help("Yeni bir keategoriye bağlamak istiyorsanız aşağıdaki alana yeni headline'ın adını giriniz."),
+                ->help("Yeni bir keategoriye bağlamak istiyorsanız aşağıdaki alana yeni kategori'ın adını giriniz."),
                 Text::make('New Category', 'new_category_title')
                     ->onlyOnForms()
                     ->hideWhenUpdating()
@@ -95,7 +95,6 @@ class Theme extends Resource
         ];
         return [
             new Tabs("Theme Create/Edit", $tabs),
-            HasMany::make("Icons", "icons", Icon::class),
             BelongsToMany::make('Theme Categories', 'categories', ThemeCategory::class),
         ];
     }
