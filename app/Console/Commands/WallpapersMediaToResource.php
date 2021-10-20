@@ -44,7 +44,7 @@ class WallpapersMediaToResource extends Command
     public function handle()
     {
         DB::beginTransaction();
-        WallpaperCategory::query()->limit(2)->get()->each(function(WallpaperCategory $wc) {
+        WallpaperCategory::all()->each(function(WallpaperCategory $wc) {
             $wc->media()->where("collection_name", 'images')
                 ->each(function(Media $media) use($wc) {
                     $wallpaper = Wallpaper::query()
