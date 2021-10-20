@@ -57,7 +57,7 @@ class WallpapersMediaToResource extends Command
                                 'sort_order' => $media->order_column
                             ]
                         );
-                    $media->copy($wallpaper, 'wallpapers', 'public');
+                    $media->copy($wallpaper, 'wallpapers', 's3');
                 });
         });
         DB::commit();
