@@ -23,6 +23,8 @@ class WallpaperCategory extends Resource
      */
     public static $model = \App\Models\WallpaperCategory::class;
 
+    public static $group = 'Wallpapers';
+
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
@@ -62,7 +64,7 @@ class WallpaperCategory extends Resource
                            return md5($originalFilename) . '.' . $extension;
                     })->hideFromIndex()
             ],
-            'Wallpapers' => [
+            'Wallpapers (Do not add new wallpapers to here deprecated!)' => [
                 Images::make('Wallpapers', 'images')->showStatistics()
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;

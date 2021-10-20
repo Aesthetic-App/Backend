@@ -5,7 +5,6 @@ namespace App\Nova;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
 use Eminiarts\Tabs\TabsOnEdit;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -13,7 +12,6 @@ use NovaAttachMany\AttachMany;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
-use Yassi\NestedForm\NestedForm;
 
 class Theme extends Resource
 {
@@ -23,6 +21,8 @@ class Theme extends Resource
     public static function label() {
         return 'Theme';
     }
+
+    public static $group = 'Theme';
 
     /**
      * The model the resource corresponds to.

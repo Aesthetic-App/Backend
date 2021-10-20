@@ -22,6 +22,8 @@ class Widget extends Resource
         return 'Widget';
     }
 
+    public static $group = 'Widget';
+
     /**
      * The model the resource corresponds to.
      *

@@ -22,6 +22,8 @@ class ThemeCategory extends Resource
         return 'Theme Category';
     }
 
+    public static $group = 'Theme';
+
     /**
      * The model the resource corresponds to.
      *

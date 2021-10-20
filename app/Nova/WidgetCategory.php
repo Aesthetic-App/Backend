@@ -21,6 +21,8 @@ class WidgetCategory extends Resource
         return 'Widget Category';
     }
 
+    public static $group = 'Widget';
+
     /**
      * The model the resource corresponds to.
      *
@@ -52,7 +54,7 @@ class WidgetCategory extends Resource
      */
     public function fields(Request $request)
     {
-        
+
         $tabs = [
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
@@ -75,7 +77,7 @@ class WidgetCategory extends Resource
                     })->hideFromIndex()
             ],
         ];
-    
+
         return [
             new Tabs("Category Edit/Create", $tabs),
             BelongsTo::make("Widget Type", "widget_type", WidgetType::class)

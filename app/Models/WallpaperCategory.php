@@ -69,4 +69,9 @@ class WallpaperCategory extends Model implements HasMedia
                 ];
         });
     }
+
+    public function wallpapers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Wallpaper::class);
+    }
 }
