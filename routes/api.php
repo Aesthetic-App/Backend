@@ -35,6 +35,8 @@ Route::middleware('api')->namespace("App\Http\Controllers")->name('api::')->grou
 
     Route::prefix('/v1.1')->group(function() {
         Route::get('themes/{theme}/icons', 'Api\ThemeController@iconsv2');
+        Route::get('wallpapers', 'Api\WallpapersApiController@index');
+        Route::get('wallpaper_categories/{category}/wallpapers', 'Api\WallpaperCategoryWallpapersApiController@index');
     });
 
 });
