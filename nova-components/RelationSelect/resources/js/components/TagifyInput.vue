@@ -34,7 +34,6 @@ export default {
     mounted() {
         this.tagify = new Tagify(this.$refs.inputRef, {
             whitelist: this.items,
-            maxTags: 10,
             dropdown: {
                 maxItems: 20,
                 classname: "tags-look",
