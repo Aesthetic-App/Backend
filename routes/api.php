@@ -47,6 +47,11 @@ Route::middleware('api')->namespace("App\Http\Controllers")->name('api::')->grou
             ->name("wallpaper_categories");
         Route::get('wallpaper_categories/{category}/images', 'Api\WallpaperCategoryController@images')
             ->name("wallpaper_categories.category.images");
+
+        Route::get('quotes', 'Api\QuoteApiController@index')
+            ->name("quotes");
+        Route::get('quote_categories', 'Api\QuoteCategoryApiController@index')
+            ->name("quotes_categories");
     });
 
     Route::prefix('/v1.1')->group(function() {
