@@ -6,6 +6,7 @@ use Eminiarts\Tabs\Tabs;
 use App\Models\WidgetType;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Fields\Boolean;
@@ -68,6 +69,9 @@ class Widget extends Resource
                 Text::make("Font Name"),
                 Text::make("Text"),
                 Boolean::make("Premium", "is_premium"),
+                Select::make("Preview Size", "preview_size")
+                    ->default("small")
+                    ->options(collect(\App\Models\Widget::PREVIEW_SIZES)),
                 NovaBelongsToDepend::make('Widget Type', "widget_type")
                     ->options(WidgetType::all()),
                 NovaBelongsToDepend::make('Widget Category')

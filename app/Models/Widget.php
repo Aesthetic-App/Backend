@@ -15,20 +15,28 @@ class Widget extends Model implements HasMedia
     use InteractsWithMedia;
     use SortableTrait;
 
+    public const PREVIEW_SIZES = [
+        'small' => 'Small',
+        'medium' => 'Medium',
+        'large' => 'Large',
+        'extra_large' => 'Extra Large'
+    ];
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
-
     protected $fillable = [
-        'name', 'category_id', 'type_id',
-        'theme_hex_color', 'background_hex_color', 'font_name', 'text'
+        'name',
+        'category_id',
+        'type_id',
+        'theme_hex_color',
+        'background_hex_color',
+        'font_name',
+        'text'
     ];
-
     protected $appends = [
         'background_image'
     ];
-
     private $excludedFieldsToArray = [
         'media'
     ];
