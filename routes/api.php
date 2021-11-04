@@ -54,6 +54,11 @@ Route::middleware('api')->namespace("App\Http\Controllers")->name('api::')->grou
             ->name("quotes_categories");
     });
 
+    Route::prefix("/admin")->name("admin.")->group(function() {
+        Route::put("icons/{icon}", "Api\\IconsApiController@update")
+            ->name("icons.update");
+    });
+
     Route::prefix('/v1.1')->group(function() {
         Route::get('themes/{theme}/icons', 'Api\ThemeController@iconsv2')
             ->name("v1-1.themes.theme.icons");

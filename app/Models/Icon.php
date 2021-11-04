@@ -17,14 +17,19 @@ class Icon extends Model implements HasMedia
 
     protected $guarded = [];
 
-    protected $hidden = ['media'];
+    protected $hidden = ['media', 'type', 'original_icon'];
 
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
 
-    protected $appends = ['custom', 'original'];
+    protected $appends = ['custom', 'original_image'];
+
+    public function original_icon(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(__CLASS__, "original_id");
+    }
 
     protected static function boot()
     {
@@ -60,9 +65,10 @@ class Icon extends Model implements HasMedia
         ];
     }
 
-    public function getOriginalAttribute()
+    public function getOriginalImageAttribute()
     {
-        $x = $this->getFirstMedia("original_icon");
+        if (!$this->original_icon) return null;
+        $x = $this->original_icon->getFirstMedia("custom_icon");
         return [
             'normal' => $x ? $x->getFullUrl() : '',
             'thumbnail' => $x ? $x->getFullUrl('thumbnail') : '',

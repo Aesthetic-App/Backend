@@ -43,7 +43,7 @@ class ThemeController extends Controller
 
     public function iconsv2(Request $request, Theme $theme)
     {
-        return $theme->icons;
+        return $theme->icons()->where("type", "normal")->get();
     }
 
     public function icons(Request $request, Theme $theme)

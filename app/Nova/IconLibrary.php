@@ -2,11 +2,10 @@
 
 namespace App\Nova;
 
-use Aesthetic\RelationSelect\RelationSelect;
 use App\Nova\Filters\IconTHEME;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Hidden;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -14,7 +13,7 @@ use Eminiarts\Tabs\TabsOnEdit;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
-class Icon extends Resource
+class IconLibrary extends Resource
 {
     use TabsOnEdit;
     use HasSortableRows;
@@ -23,19 +22,8 @@ class Icon extends Resource
     public static $originals = null;
 
     public static function label() {
-        return 'Icons';
+        return 'Icon Library';
     }
-
-
-    public static function originals() {
-        if (self::$originals === null) {
-            self::$originals = \App\Models\Icon::query()
-                ->where("type", "!=", "normal")
-                ->get();
-        }
-        return self::$originals;
-    }
-
 
     /**
      * The model the resource corresponds to.
@@ -67,7 +55,7 @@ class Icon extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->where("type", "normal");
+        return $query->where("type", "!=", "normal");
     }
 
     /**
@@ -82,18 +70,10 @@ class Icon extends Resource
             'General' => [
                 ID::make(__('ID'), 'id')->sortable()->hideFromIndex(),
                 Text::make('Name', 'name')->required(),
-                BelongsTo::make("Theme", "theme", Theme::class),
-                BelongsTo::make("Original", "original_icon", IconLibrary::class)
-                ->onlyOnForms(),
-                RelationSelect::make("Original", "original_id", __CLASS__)
-                    ->relationLabel('code')
-                    ->relationModel(\App\Models\Icon::class)
-                    ->optionTextKey("name")
-                    ->optionValueKey("id")
-                    ->editOnIndex()
-                    ->onlyOnIndex()
-                    ->options(self::originals()),
-                Images::make('Custom Icon', 'custom_icon')->showStatistics()
+                Hidden::make("Type", "type")->default("general_library"),
+                Hidden::make("Theme Id", "theme_id")->default(0),
+                Hidden::make("Original Id", "original_id")->default(0),
+                Images::make('Icon', 'custom_icon')->showStatistics()
                     ->setFileName(function($originalFilename, $extension){
                         return md5($originalFilename) . '.' . $extension;
                     })->conversionOnDetailView("small-image")
@@ -103,7 +83,7 @@ class Icon extends Resource
             ],
         ];
         return [
-            new Tabs("Icon Edit/Create", $tabs),
+            new Tabs("Library Icon Edit/Create", $tabs),
         ];
 }
 

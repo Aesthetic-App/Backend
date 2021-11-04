@@ -38,10 +38,28 @@ class RelationSelect extends Field
         return $this;
     }
 
+    public function editOnIndex(): RelationSelect
+    {
+        $this->withMeta(['editOnIndex' => true]);
+        return $this;
+    }
+
     public function relationModel($model): RelationSelect
     {
         $this->relationModel = $model;
         $this->withMeta(['relationModel' => $model]);
+        return $this;
+    }
+
+    public function optionValueKey($key): RelationSelect
+    {
+        $this->withMeta(['optionValueKey' => $key]);
+        return $this;
+    }
+
+    public function optionTextKey($key): RelationSelect
+    {
+        $this->withMeta(['optionTextKey' => $key]);
         return $this;
     }
 
