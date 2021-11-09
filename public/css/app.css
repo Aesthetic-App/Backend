@@ -9,6 +9,10 @@ button[dusk="create-button"], button[dusk="update-button"] {
     display: none;
 }
 
+button[dusk="next"] {
+    color: black !important;
+}
+
 a[href="/nova/resources/headlines/new"] {
     display: none;
 }

@@ -5,6 +5,10 @@ div[dusk="global-search-component"] {
     display: none;
 }
 
+button[dusk="next"] {
+    color: black !important;
+}
+
 button[dusk="create-button"], button[dusk="update-button"] {
     display: none;
 }
