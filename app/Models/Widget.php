@@ -35,7 +35,8 @@ class Widget extends Model implements HasMedia
         'text'
     ];
     protected $appends = [
-        'background_image'
+        'background_image',
+        'cover_image'
     ];
     private $excludedFieldsToArray = [
         'media'
@@ -63,6 +64,11 @@ class Widget extends Model implements HasMedia
     public function getBackgroundImageAttribute()
     {
         return $this->getFirstMediaUrl("background_images");
+    }
+
+    public function getCoverImageAttribute()
+    {
+        return $this->getFirstMediaUrl("cover_image");
     }
 
     public function toArray()

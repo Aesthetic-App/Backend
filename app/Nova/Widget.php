@@ -64,6 +64,10 @@ class Widget extends Resource
                     ->setFileName(function($originalFilename, $extension, $model){
                            return md5($originalFilename) . '.' . $extension;
                 })->hideFromIndex(),
+                Images::make('Cover Image', 'cover_image')->showStatistics()
+                    ->setFileName(function($originalFilename, $extension, $model){
+                        return md5($originalFilename) . '.' . $extension;
+                    })->hideFromIndex(),
                 Text::make("Theme Hex Color"),
                 Text::make("Background Hex Color"),
                 Text::make("Font Name"),
