@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Aesthetic\RelationSelect\RelationSelect;
+use App\Nova\Actions\DownloadAsJsonAction;
 use Eminiarts\Tabs\Tabs;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
@@ -128,6 +129,8 @@ class Subscription extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }

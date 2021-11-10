@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\DownloadAsJsonAction;
 use App\Nova\Filters\WallpaperCategoryFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
@@ -113,6 +114,8 @@ class Wallpaper extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }

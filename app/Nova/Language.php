@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\DownloadAsJsonAction;
 use Eminiarts\Tabs\Tabs;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -102,6 +103,8 @@ class Language extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }

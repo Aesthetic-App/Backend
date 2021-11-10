@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\DownloadAsJsonAction;
 use App\Nova\Filters\IconTHEME;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
@@ -130,6 +131,8 @@ class IconLibrary extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }

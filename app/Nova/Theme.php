@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\DownloadAsJsonAction;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
 use Eminiarts\Tabs\TabsOnEdit;
@@ -140,6 +141,8 @@ class Theme extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }

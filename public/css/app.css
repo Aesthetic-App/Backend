@@ -16,3 +16,13 @@ button[dusk="next"] {
 a[href="/nova/resources/headlines/new"] {
     display: none;
 }
+button[dusk="run-action-button"] {
+    background: black;
+}
+
+button[dusk="run-action-button"] svg{
+    color: white;
+}
+.checkbox:checked {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3E%3C/svg%3E") !important;
+}

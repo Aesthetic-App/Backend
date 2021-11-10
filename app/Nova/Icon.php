@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Aesthetic\RelationSelect\RelationSelect;
+use App\Nova\Actions\DownloadAsJsonAction;
 use App\Nova\Filters\IconTHEME;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Tabs;
@@ -150,6 +151,8 @@ class Icon extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\DownloadAsJsonAction;
 use Eminiarts\Tabs\Tabs;
 use App\Models\WidgetType;
 use Laravel\Nova\Fields\ID;
@@ -130,6 +131,8 @@ class Widget extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadAsJsonAction()
+        ];
     }
 }
