@@ -33,6 +33,7 @@ class Icon extends Resource
             self::$originals = \App\Models\Icon::query()
                 ->where("type", "!=", "normal")
                 ->get();
+            self::$originals->each(fn($i) => $i->optionImage = $i->custom["thumbnail"]);
         }
         return self::$originals;
     }
@@ -91,6 +92,7 @@ class Icon extends Resource
                     ->relationModel(\App\Models\Icon::class)
                     ->optionTextKey("name")
                     ->optionValueKey("id")
+                    ->optionImage("optionImage")
                     ->editOnIndex()
                     ->onlyOnIndex()
                     ->options(self::originals()),

@@ -51,6 +51,10 @@ class RelationSelect extends Field
         return $this;
     }
 
+    public function optionImage($image) {
+        return $this->withMeta(['optionImage' => $image]);
+    }
+
     public function optionValueKey($key): RelationSelect
     {
         $this->withMeta(['optionValueKey' => $key]);
