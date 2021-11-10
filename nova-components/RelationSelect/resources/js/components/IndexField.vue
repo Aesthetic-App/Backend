@@ -8,13 +8,13 @@
     >
         <template #selected-option="option">
             <div style="display: flex;align-items: center;">
-                <img v-if="field.optionImage && option[field.optionImage] && option[field.optionImage].length > 0" style="margin-right: 15px;height: 26px;width: 26px;object-fit: cover;border:1px solid black;border-radius: 4px;" :src="option[field.optionImage]" alt="">
+                <img v-if="field.optionImage && option[field.optionImage] && option[field.optionImage].length > 0" style="margin-right: 15px;height: 26px;width: 26px;object-fit: cover;border-radius: 2px;" :src="option[field.optionImage]" alt="">
                 <p>{{option[field.optionTextKey]}}</p>
             </div>
         </template>
         <template #option="option">
             <div style="display: flex;align-items: center;">
-                <img v-if="field.optionImage && option[field.optionImage] && option[field.optionImage].length > 0" style="margin-right: 15px;height: 26px;width: 26px;object-fit: cover;border:1px solid black;border-radius: 4px;" :src="option[field.optionImage]" alt="">
+                <img v-if="field.optionImage && option[field.optionImage] && option[field.optionImage].length > 0" style="margin-right: 15px;height: 26px;width: 26px;object-fit: cover;border-radius: 2px;" :src="option[field.optionImage]" alt="">
                 <p>{{option[field.optionTextKey]}}</p>
             </div>
         </template>
